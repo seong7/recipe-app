@@ -13,6 +13,7 @@
 
 
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
 import {elements, renderLoader, clearLoader} from './views/base';
 
@@ -25,6 +26,9 @@ import {elements, renderLoader, clearLoader} from './views/base';
  */
 const state = {};
 
+/********************
+ *  Search Controller 
+ ********************/
 const controlSearch = async () =>{      // async fn 선언 _ getResults() 가 Promise 이므로 (Search.js 참조)
     // 1) Get query from view
     const query = searchView.getInput() // TODO
@@ -39,12 +43,17 @@ const controlSearch = async () =>{      // async fn 선언 _ getResults() 가 Pr
         searchView.clearResults();
         renderLoader(elements.searchRes);
         
-        // 4) Search for recipes
-        await state.search.getResults();  // state 객체에서 사용 (await 이므로 결과가 resolve 또는 reject 될 때까지 기다림)
-        
-        // 5) Render results on UI
-        clearLoader();
-        searchView.renderResults(state.search.result);
+        try{
+
+            // 4) Search for recipes
+            await state.search.getResults();  // state 객체에서 사용 (await 이므로 결과가 resolve 또는 reject 될 때까지 기다림)
+            
+            // 5) Render results on UI
+            clearLoader();
+            searchView.renderResults(state.search.result);
+        }catch(error){
+            alert(error);
+        }
     }
 }
 
@@ -56,7 +65,7 @@ elements.searchForm.addEventListener('submit', e=>{
 
 // 검색결과 페이지 버튼 click event
         // event delegation 이용해야함 (늦게 rendering 되는 버튼임)
-        // e.target.closest('.class')  : target 에서 가장 가까운 '.class' 가진 요소를 가리킴 
+        // e.target.closest('selector')  : target 에서 가장 가까운 'selector' 요소를 가리킴 (부모 자식 간에만 서치함) 
 elements.searchRes.addEventListener('click', e =>{ 
     const btn = e.target.closest('.btn-inline');
     // console.log(btn);
@@ -66,6 +75,63 @@ elements.searchRes.addEventListener('click', e =>{
         // console.log(goToPage);
         searchView.clearResults();
         
-        searchView.renderResults(state.search.result, goToPage);    // 페이지 이동
+        searchView.renderResults(state.search.result, goToPage);    // 검색 결과 페이지 이동
     }
 });
+
+
+/********************
+ *  Recipe Controller 
+ ********************/
+//test
+// const r = new Recipe(46956);
+// r.getRecipe();
+
+const controlRecipe = async () =>{
+
+    // Get ID from url  ( hash symbol 이용하기)
+    const rId = window.location.hash.replace('#', ''); 
+    console.log(rId);
+
+    if(rId){
+        
+        // Prepare UI for a recipe
+        
+        // Search for the Recipe
+        state.recipe = new Recipe(rId);
+        
+        try{
+
+            await state.recipe.getRecipe();
+            
+            // console.log(state.recipe);
+            
+            // Calculate serving and time
+            state.recipe.calcTime();
+            state.recipe.calcServings();
+            
+            // Render result on UI
+            console.log(state.recipe);
+        } catch(error){
+            alert('Error processing recipe !');
+        }
+    }
+}
+
+// 음식 클릭 -> recipe 가져오기 (click event)
+// elements.searchResList.addEventListener('click', e =>{
+//     const recipe = e.target.closest('.results__link');
+//     // console.log(food);
+//     if(recipe){
+//         const recipeHref = recipe.href;
+//         // console.log(rId);  //__ http://localhost:8080/#47025
+//         const rId = recipeHref.substring(recipeHref.indexOf('#')+1);
+//         // console.log(rId);
+//         controlRecipe(rId);
+//     }
+// });
+
+// window.addEventListener('hashchange', controlRecipe);    //_ url 의 hash 영역 변화 감지
+// window.addEventListener('load', controlrecipe);          //_ url 에 hash 값 입력한 채로 load 한 경우 이벤트
+    // forEach 이용해 위의 두 코드 한줄로 합치기
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));

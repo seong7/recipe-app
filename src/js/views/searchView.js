@@ -21,7 +21,7 @@ const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if(title.length > limit){
                 // Array.reduce( fn(Accumulator, Currunt El), Acc의 초기값);
-        title.split(' ').reduce((acc, cur) => {
+        title.split('').reduce((acc, cur) => {  // '' 로 split 하면 문자 (또는 공백) 하나하나 모두 쪼개어 배열로 return 함
 
             if(acc + cur.length <= limit){
                 newTitle.push(cur);
@@ -38,13 +38,13 @@ const limitRecipeTitle = (title, limit = 17) => {
            acc : 18 / acc + cur.length = 24 / newTitle = ['Pasta', 'with', 'tomato']    // limit 보다 크므로 push 하지 않음
         */
 
-        return `${newTitle.join(' ')} ...`; // join : split 과 반대로 매개변수 값을 구분자로 추가하여 배열 요소들을 하나의 string 으로 합친다.
+        return `${newTitle.join('')} ...`; // join : split 과 반대로 매개변수 값을 구분자로 추가하여 배열 요소들을 하나의 string 으로 합친다.
     }
     return title;
 };
 
 // recipe 결과 출력
-const renderRecipe = recipe => {
+const renderRecipe = recipe => {        // forEach 에서 current 가 자동으로 들어옴 
     const markup = `
     <li>
         <a class="results__link" href="#${recipe.recipe_id}">
@@ -104,6 +104,7 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     // console.log(recipes);
     // console.log(`${start}, ${end}` );
     recipes.slice(start, end).forEach(renderRecipe); // foreach - callback fn 간단히 사용하는 법
+                                                        // ~~.forEach(rederRecipe(current, i, array)=>{}) 의 요약버전
     
     // render page 버튼
     renderButtons(page, recipes.length, resPerPage);
