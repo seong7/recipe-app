@@ -25,7 +25,7 @@ export default class Search{
                     // axios 도 Promise return 하므로 await 사용 !
             // console.log(res);
             this.result = res.data.recipes;
-            // console.log(this.result);
+            console.log(this.result);
         }catch(error){
             alert(error);
         }

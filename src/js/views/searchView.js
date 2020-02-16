@@ -21,7 +21,7 @@ const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if(title.length > limit){
                 // Array.reduce( fn(Accumulator, Currunt El), Acc의 초기값);
-        title.split(' ').reduce((acc, cur) => {
+        title.split('').reduce((acc, cur) => {  // '' 로 split 하면 문자 (또는 공백) 하나하나 모두 쪼개어 배열로 return 함
 
             if(acc + cur.length <= limit){
                 newTitle.push(cur);
@@ -38,7 +38,7 @@ const limitRecipeTitle = (title, limit = 17) => {
            acc : 18 / acc + cur.length = 24 / newTitle = ['Pasta', 'with', 'tomato']    // limit 보다 크므로 push 하지 않음
         */
 
-        return `${newTitle.join(' ')} ...`; // join : split 과 반대로 매개변수 값을 구분자로 추가하여 배열 요소들을 하나의 string 으로 합친다.
+        return `${newTitle.join('')} ...`; // join : split 과 반대로 매개변수 값을 구분자로 추가하여 배열 요소들을 하나의 string 으로 합친다.
     }
     return title;
 };
