@@ -44,7 +44,7 @@ const limitRecipeTitle = (title, limit = 17) => {
 };
 
 // recipe 결과 출력
-const renderRecipe = recipe => {
+const renderRecipe = recipe => {        // forEach 에서 current 가 자동으로 들어옴 
     const markup = `
     <li>
         <a class="results__link" href="#${recipe.recipe_id}">
@@ -104,6 +104,7 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     // console.log(recipes);
     // console.log(`${start}, ${end}` );
     recipes.slice(start, end).forEach(renderRecipe); // foreach - callback fn 간단히 사용하는 법
+                                                        // ~~.forEach(rederRecipe(current, i, array)=>{}) 의 요약버전
     
     // render page 버튼
     renderButtons(page, recipes.length, resPerPage);

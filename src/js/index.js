@@ -13,6 +13,7 @@
 
 
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
 import {elements, renderLoader, clearLoader} from './views/base';
 
@@ -25,6 +26,9 @@ import {elements, renderLoader, clearLoader} from './views/base';
  */
 const state = {};
 
+/********************
+ *  Search Controller 
+ ********************/
 const controlSearch = async () =>{      // async fn 선언 _ getResults() 가 Promise 이므로 (Search.js 참조)
     // 1) Get query from view
     const query = searchView.getInput() // TODO
@@ -66,6 +70,38 @@ elements.searchRes.addEventListener('click', e =>{
         // console.log(goToPage);
         searchView.clearResults();
         
-        searchView.renderResults(state.search.result, goToPage);    // 페이지 이동
+        searchView.renderResults(state.search.result, goToPage);    // 검색 결과 페이지 이동
+    }
+});
+
+
+/********************
+ *  Recipe Controller 
+ ********************/
+//test
+// const r = new Recipe(46956);
+// r.getRecipe();
+
+const controlRecipe = async (query) =>{
+    if(query){
+        state.recipe = new Recipe(query);
+
+        // Prepare UI for a recipe
+
+        // Search for the Recipe
+        await state.recipe.getRecipe();
+
+
+        // Render result on UI
+    }
+}
+
+// 음식 클릭 -> recipe 가져오기 (click event)
+elements.searchResList.addEventListener('click', e =>{
+    const recipe = e.target.closest('.results__link');
+    // console.log(food);
+    if(recipe){
+        const rId = recipe.href;
+        console.log(rId);
     }
 });

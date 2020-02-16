@@ -1,6 +1,7 @@
 // export default 'I am an exported string.';  // default export 는 하나의 data 만 export 가능
 
 import axios from 'axios';  // npm module 의 경우 경로 대신 package name 만 입력하면 됨 
+import {key, proxy} from '../config';
 
 export default class Search{
     constructor(query){
@@ -17,15 +18,15 @@ export default class Search{
                     // 1. resolved result 를 한번에 json 으로 변환함 (fetch 는 .json() 사용해야함)
                     // 2. error handling 에 더 용이함 (error catching logic 에 차이 있음)
 
-        const proxy = '';
-        const key = '';
+        // const proxy = '';
+        // const key = '';  // config.js 에서 import 해서 씀
 
         try{
             const res = await axios(`${proxy}https://forkify-api.herokuapp.com/api/search?q=${this.query}`);
                     // axios 도 Promise return 하므로 await 사용 !
             // console.log(res);
-            this.result = res.data.recipes;
-            console.log(this.result);
+            this.result = res.data.recipes; // Search 객체 내 property 저장
+            // console.log(this.result);
         }catch(error){
             alert(error);
         }
