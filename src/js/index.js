@@ -31,8 +31,8 @@ const state = {};
  ********************/
 const controlSearch = async () =>{      // async fn 선언 _ getResults() 가 Promise 이므로 (Search.js 참조)
     // 1) Get query from view
-    //const query = searchView.getInput();
-    const query = 'pizza';  // 테스트용
+    const query = searchView.getInput();
+    // const query = 'pizza';  // 테스트용
     
     //console.log(query);
 
@@ -59,11 +59,11 @@ const controlSearch = async () =>{      // async fn 선언 _ getResults() 가 Pr
     }
 }
 
-// 테스트용 'load' event
-window.addEventListener('load', e=>{
-    e.preventDefault();     // default event delegation 을 막음
-    controlSearch();
-});
+// // 테스트용 'load' event
+// window.addEventListener('load', e=>{
+//     e.preventDefault();     // default event delegation 을 막음
+//     controlSearch();
+// });
 
 // 검색 버튼 submit event
 elements.searchForm.addEventListener('submit', e=>{
@@ -107,13 +107,11 @@ const controlRecipe = async () =>{
         
         // Search for the Recipe
         state.recipe = new Recipe(rId);
-
-        // 테스트 용 ( global object 에 recipe 포함시키기)
-        window.r = state.recipe;
         
         try{
 
             await state.recipe.getRecipe();
+            state.recipe.parseIngredients();
             
             // console.log(state.recipe);
             
