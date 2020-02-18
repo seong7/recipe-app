@@ -31,7 +31,9 @@ const state = {};
  ********************/
 const controlSearch = async () =>{      // async fn 선언 _ getResults() 가 Promise 이므로 (Search.js 참조)
     // 1) Get query from view
-    const query = searchView.getInput() // TODO
+    //const query = searchView.getInput();
+    const query = 'pizza';  // 테스트용
+    
     //console.log(query);
 
     if(query){
@@ -56,6 +58,12 @@ const controlSearch = async () =>{      // async fn 선언 _ getResults() 가 Pr
         }
     }
 }
+
+// 테스트용 'load' event
+window.addEventListener('load', e=>{
+    e.preventDefault();     // default event delegation 을 막음
+    controlSearch();
+});
 
 // 검색 버튼 submit event
 elements.searchForm.addEventListener('submit', e=>{
@@ -99,6 +107,9 @@ const controlRecipe = async () =>{
         
         // Search for the Recipe
         state.recipe = new Recipe(rId);
+
+        // 테스트 용 ( global object 에 recipe 포함시키기)
+        window.r = state.recipe;
         
         try{
 
@@ -132,6 +143,6 @@ const controlRecipe = async () =>{
 // });
 
 // window.addEventListener('hashchange', controlRecipe);    //_ url 의 hash 영역 변화 감지
-// window.addEventListener('load', controlrecipe);          //_ url 에 hash 값 입력한 채로 load 한 경우 이벤트
+// window.addEventListener('load', controlrecipe);          //_ url 에 hash 값 입력한 채로 load 한 경우 이벤트  ( load 할 때는 # 없애야하는 거 아닌지?)
     // forEach 이용해 위의 두 코드 한줄로 합치기
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
