@@ -8,9 +8,7 @@ export default class Recipe {
 
   async getRecipe() {
     try {
-      const res = await axios(
-        `${proxy}https://forkify-api.herokuapp.com/api/get?rId=${this.id}`,
-      );
+      const res = await axios(`${proxy}https://forkify-api.herokuapp.com/api/get?rId=${this.id}`);
       // return Promise
       // console.log(res);
       this.title = res.data.recipe.title;
@@ -81,7 +79,7 @@ export default class Recipe {
       const arrIng = ingredient.split(' ');
 
       // unit 포함되어 있는지 여부 확인
-      const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2));
+      const unitIndex = arrIng.findIndex((el2) => unitsShort.includes(el2));
       // findIndex(fn) ES6 : callback fn 이 참인 첫번째 요소의 index return
       // 참인 요소가 없으면(unit 이 없으면) -1 return
       let objIng;
@@ -111,7 +109,7 @@ export default class Recipe {
           ingredient: arrIng.slice(unitIndex + 1).join(' '),
         };
       } else if (parseInt(arrIng[0], 10) || numPattern.test(arrIng[0])) {
-        /* 10진수 integer 로 변환 
+        /* 10진수 integer 로 변환
                         string 이면 -> NaN return -> coerce to false
                     */
 
@@ -128,7 +126,8 @@ export default class Recipe {
 
         // let i = 0;
         // let nameIng = arrIng.reduce((result, cur)=>{  // 요소를 건너뛰기에는 reduce 가 제일 적절함
-        //                                             // 0번 요소(수) 건너뛰기 _ arrIng.map 으로 실행하면 건너뛸 수 없음
+        //                                             // 0번 요소(수) 건너뛰기
+        //                                                : arrIng.map 으로 실행하면 건너뛸 수 없음
         //     if(i>0){
         //         result.push(cur);
         //     }
@@ -139,7 +138,7 @@ export default class Recipe {
         // const nameIng = getNameIng(arrIng, 1);
 
         objIng = {
-          count: parseInt(arrIng[0]),
+          count: parseInt(arrIng[0], 10),
           unit: '',
           ingredient: arrIng.slice(1).join(' '),
         };
