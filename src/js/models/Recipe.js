@@ -1,5 +1,5 @@
-import axios from "axios";
-import { key, proxy } from "../config";
+import axios from 'axios';
+import { key, proxy } from '../config';
 
 export default class Recipe {
   constructor(id) {
@@ -9,7 +9,7 @@ export default class Recipe {
   async getRecipe() {
     try {
       const res = await axios(
-        `${proxy}https://forkify-api.herokuapp.com/api/get?rId=${this.id}`
+        `${proxy}https://forkify-api.herokuapp.com/api/get?rId=${this.id}`,
       );
       // return Promise
       // console.log(res);
@@ -20,7 +20,7 @@ export default class Recipe {
       this.ingredients = res.data.recipe.ingredients; // array
     } catch (error) {
       // alert(error);
-      alert("Something went wrong :(");
+      alert('Something went wrong :(');
     }
   }
 
@@ -42,7 +42,7 @@ export default class Recipe {
     // const getNameIng = (arry, startJoin)=>{
     //     let i = 0;
     //     let nameIng = arry.reduce((result, cur)=>{  // 요소를 건너뛰기에는 reduce 가 제일 적절함
-    //                                                 // 0번 요소(수) 건너뛰기 _ arrIng.map 으로 실행하면 건너뛸 수 없음
+    //                                              // 0번 요소(수) 건너뛰기 _ arrIng.map 으로 실행하면 건너뛸 수 없음
     //         if(i>=startJoin){
     //             result.push(cur);
     //         }
@@ -54,40 +54,40 @@ export default class Recipe {
     // } ===> array.slice(startIndex, endIndex(생략가능))  으로 쉽게 구현가능....
 
     const unitsLong = [
-      "tablespoons",
-      "tablespoon",
-      "ounces",
-      "ounce",
-      "teaspoons",
-      "teaspoon",
-      "cups",
-      "pounds"
+      'tablespoons',
+      'tablespoon',
+      'ounces',
+      'ounce',
+      'teaspoons',
+      'teaspoon',
+      'cups',
+      'pounds',
     ];
-    const unitsShort = ["tbsp", "tbsp", "oz", "oz", "tsp", "cup", "pound"]; // 위의 단위들의 요약 버전
+    const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'cup', 'pound']; // 위의 단위들의 요약 버전
 
     const newIngredients = this.ingredients.map((el, index) => {
       // 1) Uniform units (단위 통합)
       let ingredient = el.toLowerCase(); // 소문자 변환
-      let regex;
-      unitsLong.forEach((unit, index) => {
-        ingredient = ingredient.replace(unit, unitsShort[index]);
+
+      unitsLong.forEach((unit, i) => {
+        ingredient = ingredient.replace(unit, unitsShort[i]);
       });
 
       // 2) Remove parenthesized words
-      ingredient = ingredient.replace(/\s*\([^)]*\)\s*/g, ""); //~~~ (@@) -> ~~~
-      ingredient = ingredient.replace(/,/g, ""); // ~~,~~ -> ~~~~
+      ingredient = ingredient.replace(/\s*\([^)]*\)\s*/g, ''); // ~~~ (@@) -> ~~~
+      ingredient = ingredient.replace(/,/g, ''); // ~~,~~ -> ~~~~
 
       // 3) Parse ingredients into an Object {count, unit and ingredient}
-      const arrIng = ingredient.split(" ");
+      const arrIng = ingredient.split(' ');
 
       // unit 포함되어 있는지 여부 확인
       const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2));
       // findIndex(fn) ES6 : callback fn 이 참인 첫번째 요소의 index return
       // 참인 요소가 없으면(unit 이 없으면) -1 return
       let objIng;
-      let numPattern = new RegExp(
-        /^[0-9]+((\.[0-9]+)|([0-9]\/[0-9]))?(-[0-9]+((\.[0-9]+)|([0-9]\/[0-9]))?)?/
-      ); //1-1.5 , 1.5-2, 1.5-2.5, 1-1/2, 1/3-1/2
+      const numPattern = new RegExp(
+        /^[0-9]+((\.[0-9]+)|([0-9]\/[0-9]))?(-[0-9]+((\.[0-9]+)|([0-9]\/[0-9]))?)?/,
+      ); // 1-1.5 , 1.5-2, 1.5-2.5, 1-1/2, 1/3-1/2
       if (unitIndex > -1) {
         // There is a unit
 
@@ -99,16 +99,16 @@ export default class Recipe {
         // ex) 4-1/2 cups --> eval(4+1/2)
         let count;
         if (arrCount.length === 1) {
-          count = eval(arrIng[0].replace("-", "+")); // 해당 data에서 - 는 실제로 + 를 의미하므로
+          count = eval(arrIng[0].replace('-', '+')); // 해당 data에서 - 는 실제로 + 를 의미하므로
         } else {
-          count = eval(arrIng.slice(0, unitIndex).join("+")); // eval('4+1/2') --> 4.5
+          count = eval(arrIng.slice(0, unitIndex).join('+')); // eval('4+1/2') --> 4.5
         }
 
         objIng = {
           // count : parseInt(arrIng[0]),
           count,
           unit: arrIng[unitIndex],
-          ingredient: arrIng.slice(unitIndex + 1).join(" ")
+          ingredient: arrIng.slice(unitIndex + 1).join(' '),
         };
       } else if (parseInt(arrIng[0], 10) || numPattern.test(arrIng[0])) {
         /* 10진수 integer 로 변환 
@@ -140,16 +140,16 @@ export default class Recipe {
 
         objIng = {
           count: parseInt(arrIng[0]),
-          unit: "",
-          ingredient: arrIng.slice(1).join(" ")
+          unit: '',
+          ingredient: arrIng.slice(1).join(' '),
         };
       } else if (unitIndex === -1) {
         // There is NO unit and 1st element is NOT a number
 
         objIng = {
           count: 1,
-          unit: "",
-          ingredient
+          unit: '',
+          ingredient,
           // --> ingredient : ingredient 와 같음  (ES6 문법)
         };
       }

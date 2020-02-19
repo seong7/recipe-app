@@ -1,17 +1,17 @@
 export const elements = {
-  searchForm: document.querySelector(".search"),
-  searchInput: document.querySelector(".search__field"),
-  searchRes: document.querySelector(".results"),
-  searchResList: document.querySelector(".results__list"),
-  searchResPages: document.querySelector(".results__pages")
+  searchForm: document.querySelector('.search'),
+  searchInput: document.querySelector('.search__field'),
+  searchRes: document.querySelector('.results'),
+  searchResList: document.querySelector('.results__list'),
+  searchResPages: document.querySelector('.results__pages'),
 };
 
 export const elementStrings = {
   // 최초에 render 되지 않는 컴포넌트 이름들 저장 ( elements 에 저장하려하면 error 발생)
-  loader: "loader"
+  loader: 'loader',
 };
 
-export const renderLoader = parent => {
+export const renderLoader = (parent) => {
   // reuseable 하게 spinning loader 생성
   const loader = `
         <div class="${elementStrings.loader}">
@@ -20,7 +20,7 @@ export const renderLoader = parent => {
             </svg>
         </div>
     `;
-  parent.insertAdjacentHTML("afterbegin", loader);
+  parent.insertAdjacentHTML('afterbegin', loader);
 };
 
 export const clearLoader = () => {
