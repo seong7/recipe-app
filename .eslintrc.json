@@ -15,10 +15,12 @@
   "rules": {
     "no-underscore-dangle": 0,
     "no-empty": 0,
-    "no-console": 1,
+    "no-console": "warn",
     "import/prefer-dafualt-export": 0,
     "linebreak-style": 0,
     "global-require": 0,
-    "eslint linebreak-style": [0, "error", "windows"]
+    "eslint linebreak-style": [0, "error", "windows"],
+    "no-alert": "warn",
+    "no-unused-vars": "warn"
   }
 }

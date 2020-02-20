@@ -15,6 +15,7 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
 /*
@@ -111,7 +112,7 @@ const controlRecipe = async () => {
 
       // console.log(state.recipe);
 
-      // Calculate serving and time
+      // Calculate servings and time
       state.recipe.calcTime();
       state.recipe.calcServings();
 

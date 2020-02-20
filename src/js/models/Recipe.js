@@ -72,16 +72,19 @@ export default class Recipe {
       });
 
       // 2) Remove parenthesized words
-      ingredient = ingredient.replace(/\s*\([^)]*\)\s*/g, ''); // ~~~ (@@) -> ~~~
+      ingredient = ingredient.replace(/\s*\([^)]*\)\s*/g, ' '); // ~~~ (@@) -> ~~~
       ingredient = ingredient.replace(/,/g, ''); // ~~,~~ -> ~~~~
 
       // 3) Parse ingredients into an Object {count, unit and ingredient}
+
       const arrIng = ingredient.split(' ');
 
       // unit 포함되어 있는지 여부 확인
       const unitIndex = arrIng.findIndex((el2) => unitsShort.includes(el2));
+
       // findIndex(fn) ES6 : callback fn 이 참인 첫번째 요소의 index return
       // 참인 요소가 없으면(unit 이 없으면) -1 return
+
       let objIng;
       const numPattern = new RegExp(
         /^[0-9]+((\.[0-9]+)|([0-9]\/[0-9]))?(-[0-9]+((\.[0-9]+)|([0-9]\/[0-9]))?)?/,
@@ -114,15 +117,6 @@ export default class Recipe {
                     */
 
         // There is NO unit, but 1st element is a number
-
-        // let test = arrIng.map((cur, index)=>{
-        //     if(index > 0){
-        //         console.log(`${index} : ${cur}`);
-        //         return cur;
-        //     }else{
-        //         continue;
-        //     }
-        // }).join(' ');
 
         // let i = 0;
         // let nameIng = arrIng.reduce((result, cur)=>{  // 요소를 건너뛰기에는 reduce 가 제일 적절함
