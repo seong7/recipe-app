@@ -1,6 +1,7 @@
 import { Fraction } from 'fractional';
 import { elements } from './base';
 
+// count format 변경
 const formatCount = (count) => {
   if (count) {
     let newCount = count;
@@ -11,23 +12,23 @@ const formatCount = (count) => {
 
     // 원래 integer 인 경우
     if (!dec) {
-      return count;
+      return newCount;
+    }
+
+    // 소수점 아래 2 자리에서 반올림한다.
+    if (dec.length > 2) {
+      const newDec = dec.substr(0, 2);
+      newCount = [int, newDec].join('.');
     }
 
     // 0.xx 경우
     if (int === '0') {
-      // 소수점 아래 2 자리에서 반올림한다.
-      if (dec.length > 2) {
-        const newDec = dec.substr(0, 2);
-        newCount = [int, newDec].join('.');
-      }
-
       // 외부 라이브러리 Fraction 사용 영역
       const fr = new Fraction(newCount);
       return `${fr.numerator}/${fr.denominator}`;
     }
 
-    const fr = new Fraction(count - parseInt(int, 10));
+    const fr = new Fraction(newCount - parseInt(int, 10));
     return `${int} ${fr.numerator}/${fr.denominator}`;
   }
   return '?';
@@ -74,12 +75,12 @@ export const renderRecipe = (recipe) => {
             <span class="recipe__info-text"> servings</span>
 
             <div class="recipe__info-buttons">
-                <button class="btn-tiny">
+                <button class="btn-tiny btn-decrease">
                     <svg>
                         <use href="img/icons.svg#icon-circle-with-minus"></use>
                     </svg>
                 </button>
-                <button class="btn-tiny">
+                <button class="btn-tiny btn-increase">
                     <svg>
                         <use href="img/icons.svg#icon-circle-with-plus"></use>
                     </svg>
@@ -126,4 +127,17 @@ export const renderRecipe = (recipe) => {
     </div>
   `;
   elements.recipe.insertAdjacentHTML('afterbegin', markup);
+};
+
+// serving 과 ingredient 변화 주기
+export const updateServingsIngredients = (recipe) => {
+  // Update Servings
+  document.querySelector('.recipe__info-data--people').textContent = recipe.servings;
+
+  // Update Ingredients
+  const countElement = Array.from(document.querySelectorAll('.recipe__count'));
+  countElement.forEach((element, i) => {
+    const el = element;
+    el.textContent = formatCount(recipe.ingredients[i].count);
+  });
 };

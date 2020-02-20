@@ -106,12 +106,15 @@ const controlRecipe = async () => {
     recipeView.clearRecipe();
     renderLoader(elements.recipe);
 
+    // (search 결과 리스트가 있을 때) 선택된 recipe Highlight
+    if (state.search) searchView.highlightSelected(rId);
+
     // Search for the Recipe
     state.recipe = new Recipe(rId);
 
     try {
       await state.recipe.getRecipe();
-      console.log(state.recipe);
+      // console.log(state.recipe);
       state.recipe.parseIngredients();
 
       // Calculate servings and time
@@ -145,3 +148,20 @@ const controlRecipe = async () => {
 //                                                            ( load 할 때는 # 없애야하는 거 아닌지?)
 // forEach 이용해 위의 두 코드 한줄로 합치기
 ['hashchange', 'load'].forEach((event) => window.addEventListener(event, controlRecipe));
+
+// Recipe 의 + - 버튼 event
+elements.recipe.addEventListener('click', (e) => {
+  if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+    /* .btn-decrease * : 해당 요소의 모든 자식 요소를 가리킴 !!!!!! */
+
+    // Decrease Btn
+    if (state.recipe.servings > 1) {
+      /* 1보다 작으면 줄일 수 없어야함 */
+      state.recipe.updateServings('dec');
+    }
+  } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+    // Increase Btn
+    state.recipe.updateServings('inc');
+  }
+  recipeView.updateServingsIngredients(state.recipe);
+});

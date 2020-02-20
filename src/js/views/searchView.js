@@ -17,6 +17,18 @@ export const clearResults = () => {
   elements.searchResPages.innerHTML = '';
 };
 
+// 선택된 recipe css 변경
+export const highlightSelected = (id) => {
+  // 모두 제거
+  const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+  resultsArr.forEach((el) => {
+    el.classList.remove('results__link--active');
+  });
+
+  // 선택된 요소에 클래스 추가
+  document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+};
+
 // 결과 목록의 제목 길이 제한 후 '...' 추가
 const limitRecipeTitle = (title, limit = 17) => {
   const newTitle = [];

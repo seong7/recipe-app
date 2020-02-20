@@ -151,4 +151,18 @@ export default class Recipe {
     });
     this.ingredients = newIngredients;
   }
+
+  updateServings(btnType) {
+    const type = btnType;
+    // Serving
+    const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
+
+    // Ingredients
+    this.ingredients.forEach((ingredient) => {
+      const ing = ingredient;
+      ing.count *= newServings / this.servings; /* 증가한 비율만큼 곱하기 */
+    });
+
+    this.servings = newServings;
+  }
 }
