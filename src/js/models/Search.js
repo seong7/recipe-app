@@ -31,7 +31,8 @@ export default class Search {
       this.result = res.data.recipes; // Search 객체 내 property 저장
       // console.log(this.result);
     } catch (error) {
-      alert(error);
+      // alert(error);
+      alert('해당 음식 정보가 없습니다.');
     }
   }
 }

@@ -18,7 +18,7 @@ export default class Recipe {
       this.ingredients = res.data.recipe.ingredients; // array
     } catch (error) {
       // alert(error);
-      alert('Something went wrong :(');
+      alert('정보를 불러오는 중에 문제가 발생했습니다. 다시 시도해주세요.');
     }
   }
 
@@ -32,7 +32,7 @@ export default class Recipe {
 
   // 몇인분? _ 4로 통합(알고리즘 생략)
   calcServings() {
-    this.serving = 4;
+    this.servings = 4;
   }
 
   //
@@ -62,6 +62,7 @@ export default class Recipe {
       'pounds',
     ];
     const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'cup', 'pound']; // 위의 단위들의 요약 버전
+    const units = [...unitsShort, 'kg', 'g'];
 
     const newIngredients = this.ingredients.map((el, index) => {
       // 1) Uniform units (단위 통합)
@@ -80,7 +81,7 @@ export default class Recipe {
       const arrIng = ingredient.split(' ');
 
       // unit 포함되어 있는지 여부 확인
-      const unitIndex = arrIng.findIndex((el2) => unitsShort.includes(el2));
+      const unitIndex = arrIng.findIndex((el2) => units.includes(el2));
 
       // findIndex(fn) ES6 : callback fn 이 참인 첫번째 요소의 index return
       // 참인 요소가 없으면(unit 이 없으면) -1 return
