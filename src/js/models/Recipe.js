@@ -18,7 +18,7 @@ export default class Recipe {
       this.ingredients = res.data.recipe.ingredients; // array
     } catch (error) {
       // alert(error);
-      alert('Something went wrong :(');
+      alert('정보를 불러오는 중에 문제가 발생했습니다. 다시 시도해주세요.');
     }
   }
 
@@ -32,7 +32,7 @@ export default class Recipe {
 
   // 몇인분? _ 4로 통합(알고리즘 생략)
   calcServings() {
-    this.serving = 4;
+    this.servings = 4;
   }
 
   //
@@ -62,6 +62,7 @@ export default class Recipe {
       'pounds',
     ];
     const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'cup', 'pound']; // 위의 단위들의 요약 버전
+    const units = [...unitsShort, 'kg', 'g'];
 
     const newIngredients = this.ingredients.map((el, index) => {
       // 1) Uniform units (단위 통합)
@@ -72,16 +73,19 @@ export default class Recipe {
       });
 
       // 2) Remove parenthesized words
-      ingredient = ingredient.replace(/\s*\([^)]*\)\s*/g, ''); // ~~~ (@@) -> ~~~
+      ingredient = ingredient.replace(/\s*\([^)]*\)\s*/g, ' '); // ~~~ (@@) -> ~~~
       ingredient = ingredient.replace(/,/g, ''); // ~~,~~ -> ~~~~
 
       // 3) Parse ingredients into an Object {count, unit and ingredient}
+
       const arrIng = ingredient.split(' ');
 
       // unit 포함되어 있는지 여부 확인
-      const unitIndex = arrIng.findIndex((el2) => unitsShort.includes(el2));
+      const unitIndex = arrIng.findIndex((el2) => units.includes(el2));
+
       // findIndex(fn) ES6 : callback fn 이 참인 첫번째 요소의 index return
       // 참인 요소가 없으면(unit 이 없으면) -1 return
+
       let objIng;
       const numPattern = new RegExp(
         /^[0-9]+((\.[0-9]+)|([0-9]\/[0-9]))?(-[0-9]+((\.[0-9]+)|([0-9]\/[0-9]))?)?/,
@@ -115,15 +119,6 @@ export default class Recipe {
 
         // There is NO unit, but 1st element is a number
 
-        // let test = arrIng.map((cur, index)=>{
-        //     if(index > 0){
-        //         console.log(`${index} : ${cur}`);
-        //         return cur;
-        //     }else{
-        //         continue;
-        //     }
-        // }).join(' ');
-
         // let i = 0;
         // let nameIng = arrIng.reduce((result, cur)=>{  // 요소를 건너뛰기에는 reduce 가 제일 적절함
         //                                             // 0번 요소(수) 건너뛰기
@@ -155,5 +150,19 @@ export default class Recipe {
       return objIng;
     });
     this.ingredients = newIngredients;
+  }
+
+  updateServings(btnType) {
+    const type = btnType;
+    // Serving
+    const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
+
+    // Ingredients
+    this.ingredients.forEach((ingredient) => {
+      const ing = ingredient;
+      ing.count *= newServings / this.servings; /* 증가한 비율만큼 곱하기 */
+    });
+
+    this.servings = newServings;
   }
 }

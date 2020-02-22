@@ -15,6 +15,7 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 import { elements, renderLoader, clearLoader } from './views/base';
 
 /*
@@ -54,7 +55,7 @@ const controlSearch = async () => {
       clearLoader();
       searchView.renderResults(state.search.result);
     } catch (error) {
-      alert(error);
+      // alert(error);
     }
   }
 };
@@ -73,10 +74,12 @@ elements.searchForm.addEventListener('submit', (e) => {
 
 // 검색결과 페이지 버튼 click event
 // event delegation 이용해야함 (page load 후에 늦게 rendering 되는 버튼임)
-// e.target.closest('selector')  : target 에서 가장 가까운 'selector' 요소를 가리킴 (부모 자식 간에만 서치함)
 elements.searchRes.addEventListener('click', (e) => {
   const btn = e.target.closest('.btn-inline');
+  // e.target.closest('selector')  : target 에서 가장 가까운 'selector' 요소를 가리킴 (부모 자식 간에만 서치함)
+
   // console.log(btn);
+
   if (btn) {
     const goToPage = parseInt(btn.dataset.goto, 10);
     // html 에서 data-goto 속성으로 정한 값 string return
@@ -97,26 +100,30 @@ elements.searchRes.addEventListener('click', (e) => {
 const controlRecipe = async () => {
   // Get ID from url  ( hash symbol 이용하기)
   const rId = window.location.hash.replace('#', '');
-  console.log(rId);
 
   if (rId) {
     // Prepare UI for a recipe
+    recipeView.clearRecipe();
+    renderLoader(elements.recipe);
+
+    // (search 결과 리스트가 있을 때) 선택된 recipe Highlight
+    if (state.search) searchView.highlightSelected(rId);
 
     // Search for the Recipe
     state.recipe = new Recipe(rId);
 
     try {
       await state.recipe.getRecipe();
+      // console.log(state.recipe);
       state.recipe.parseIngredients();
 
-      // console.log(state.recipe);
-
-      // Calculate serving and time
+      // Calculate servings and time
       state.recipe.calcTime();
       state.recipe.calcServings();
 
       // Render result on UI
-      console.log(state.recipe);
+      clearLoader();
+      recipeView.renderRecipe(state.recipe);
     } catch (error) {
       alert('Error processing recipe !');
     }
@@ -141,3 +148,20 @@ const controlRecipe = async () => {
 //                                                            ( load 할 때는 # 없애야하는 거 아닌지?)
 // forEach 이용해 위의 두 코드 한줄로 합치기
 ['hashchange', 'load'].forEach((event) => window.addEventListener(event, controlRecipe));
+
+// Recipe 의 + - 버튼 event
+elements.recipe.addEventListener('click', (e) => {
+  if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+    /* .btn-decrease * : 해당 요소의 모든 자식 요소를 가리킴 !!!!!! */
+
+    // Decrease Btn
+    if (state.recipe.servings > 1) {
+      /* 1보다 작으면 줄일 수 없어야함 */
+      state.recipe.updateServings('dec');
+    }
+  } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+    // Increase Btn
+    state.recipe.updateServings('inc');
+  }
+  recipeView.updateServingsIngredients(state.recipe);
+});
