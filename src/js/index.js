@@ -162,6 +162,8 @@ elements.recipe.addEventListener('click', (e) => {
   } else if (e.target.matches('.btn-increase, .btn-increase *')) {
     // Increase Btn
     state.recipe.updateServings('inc');
+  } else {
+    return;
   }
   recipeView.updateServingsIngredients(state.recipe);
 });
