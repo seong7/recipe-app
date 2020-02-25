@@ -1,4 +1,4 @@
-import uniqid from 'uniqid';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class List {
   constructor() {
@@ -7,7 +7,7 @@ export default class List {
 
   addItem(count, unit, ingredient) {
     const item = {
-      id: uniqid(),
+      id: uuidv4(), // uniq 한 id 를 부여해준다. (라이브러리)
       count,
       unit,
       ingredient,
@@ -23,5 +23,9 @@ export default class List {
                .slice(1, 2) -> returns 4,  original array is [2, 4, 8]  // original array 변화 없음
     */
     this.items.splice(index, 1); // findIndex 로 찾은 idx 의 요소 하나만 삭제
+  }
+
+  updateCount(id, newCount) {
+    this.items.find((el) => el.id === id).count = newCount; // callback fn 이 true ruturn 하는 첫 elemt
   }
 }

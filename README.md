@@ -56,6 +56,7 @@ API 를 이용한 레시피 정보 검색 web app
   > - ##### html5 'data-\*' 속성 사용법 [searchView.js]()
   >   - html: \<button class="btn1" data-xx=2>
   >   - js: btn1.dataset.xx // = 2
+  >   - selector : document.querySelector("[data-xx=2]");
 
 * #### Event 관련
 
@@ -73,4 +74,4 @@ API 를 이용한 레시피 정보 검색 web app
 * #### Package 관련
 
   > - ##### fractional 사용법 [>>]()
-  > - ##### uniqid 사용법 [>>]()
+  > - ##### uuid 사용법 [>>]()
