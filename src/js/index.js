@@ -14,6 +14,7 @@
 
 import Search from './models/Search';
 import Recipe from './models/Recipe';
+import List from './models/List';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import { elements, renderLoader, clearLoader } from './views/base';
@@ -98,8 +99,8 @@ elements.searchRes.addEventListener('click', (e) => {
 // r.getRecipe();
 
 const controlRecipe = async () => {
-  // Get ID from url  ( hash symbol 이용하기)
   const rId = window.location.hash.replace('#', '');
+  // Get ID from url  ( hash symbol 이용하기)
 
   if (rId) {
     // Prepare UI for a recipe
@@ -162,6 +163,11 @@ elements.recipe.addEventListener('click', (e) => {
   } else if (e.target.matches('.btn-increase, .btn-increase *')) {
     // Increase Btn
     state.recipe.updateServings('inc');
+  } else {
+    return;
   }
   recipeView.updateServingsIngredients(state.recipe);
 });
+
+// const l = newList();
+window.l = new List();
