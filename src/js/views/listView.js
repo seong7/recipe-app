@@ -15,7 +15,7 @@ export const renderItem = (item) => {
         </button>
     </li>
     `;
-  elements.shoping.insertAdjacentHTML('beforeend', markup);
+  elements.shopping.insertAdjacentHTML('beforeend', markup);
 };
 
 export const deleteItem = (id) => {
@@ -24,5 +24,5 @@ export const deleteItem = (id) => {
   //   elements.shoping.removeChild(item);
 
   const item = document.querySelector(`[data-itemid="${id}"]`);
-  item.parentElement.removeChild(item);
+  if (item) item.parentElement.removeChild(item);
 };
