@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
+// 하나의 recipe 에 대한 ingredient list
 export default class List {
   constructor() {
     this.items = [];
@@ -13,6 +14,7 @@ export default class List {
       ingredient,
     };
     this.items.push(item);
+    return item;
   }
 
   deleteItem(id) {

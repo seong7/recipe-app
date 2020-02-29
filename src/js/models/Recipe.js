@@ -6,11 +6,12 @@ export default class Recipe {
     this.id = id;
   }
 
+  // 선택한 요리의 recipe 불러오기
   async getRecipe() {
     try {
       const res = await axios(`${proxy}https://forkify-api.herokuapp.com/api/get?rId=${this.id}`);
       // return Promise
-      // console.log(res);
+      // console.log(res.data.recipe.ingredients);
       this.title = res.data.recipe.title;
       this.author = res.data.recipe.publisher;
       this.img = res.data.recipe.image_url;
@@ -35,18 +36,17 @@ export default class Recipe {
     this.servings = 4;
   }
 
-  //
+  // 재료 format 바꾸기 (숫자 / 이름)
   parseIngredients() {
     // const getNameIng = (arry, startJoin)=>{
     //     let i = 0;
     //     let nameIng = arry.reduce((result, cur)=>{  // 요소를 건너뛰기에는 reduce 가 제일 적절함
     //                                              // 0번 요소(수) 건너뛰기 _ arrIng.map 으로 실행하면 건너뛸 수 없음
-    //         if(i>=startJoin){
+    //         if (i >= startJoin){
     //             result.push(cur);
     //         }
     //         i++;
     //         return result;
-
     //     }, []).join(' ');
     //     return nameIng;
     // } ===> array.slice(startIndex, endIndex(생략가능))  으로 쉽게 구현가능....
@@ -61,15 +61,15 @@ export default class Recipe {
       'cups',
       'pounds',
     ];
-    const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'cup', 'pound']; // 위의 단위들의 요약 버전
-    const units = [...unitsShort, 'kg', 'g'];
+    const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound']; // 위의 단위들의 요약 버전
+    const units = [...unitsShort, 'kg', 'g']; // 위에 kg, g 추가하는 법 예시
 
     const newIngredients = this.ingredients.map((el, index) => {
       // 1) Uniform units (단위 통합)
       let ingredient = el.toLowerCase(); // 소문자 변환
 
       unitsLong.forEach((unit, i) => {
-        ingredient = ingredient.replace(unit, unitsShort[i]);
+        ingredient = ingredient.replace(unit, units[i]);
       });
 
       // 2) Remove parenthesized words

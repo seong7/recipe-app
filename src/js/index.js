@@ -12,12 +12,13 @@
 // console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and
 //              ${searchView.multiply(3, 5)}. ${str}}`);
 
-import Search from './models/Search';
-import Recipe from './models/Recipe';
-import List from './models/List';
-import * as searchView from './views/searchView';
-import * as recipeView from './views/recipeView';
-import { elements, renderLoader, clearLoader } from './views/base';
+import Search from "./models/Search";
+import Recipe from "./models/Recipe";
+import List from "./models/List";
+import * as searchView from "./views/searchView";
+import * as recipeView from "./views/recipeView";
+import * as listView from "./views/listView";
+import { elements, renderLoader, clearLoader } from "./views/base";
 
 /*
  *** Global state of the app
@@ -27,6 +28,7 @@ import { elements, renderLoader, clearLoader } from './views/base';
  *  - Liked recipes
  */
 const state = {};
+window.state = state; // test 목적으로 global scope 에 공개
 
 /* *******************
  *  Search Controller
@@ -68,15 +70,15 @@ const controlSearch = async () => {
 // });
 
 // 검색 버튼 submit event
-elements.searchForm.addEventListener('submit', (e) => {
+elements.searchForm.addEventListener("submit", (e) => {
   e.preventDefault(); // default event delegation 을 막음
   controlSearch();
 });
 
 // 검색결과 페이지 버튼 click event
 // event delegation 이용해야함 (page load 후에 늦게 rendering 되는 버튼임)
-elements.searchRes.addEventListener('click', (e) => {
-  const btn = e.target.closest('.btn-inline');
+elements.searchRes.addEventListener("click", (e) => {
+  const btn = e.target.closest(".btn-inline");
   // e.target.closest('selector')  : target 에서 가장 가까운 'selector' 요소를 가리킴 (부모 자식 간에만 서치함)
 
   // console.log(btn);
@@ -99,7 +101,7 @@ elements.searchRes.addEventListener('click', (e) => {
 // r.getRecipe();
 
 const controlRecipe = async () => {
-  const rId = window.location.hash.replace('#', '');
+  const rId = window.location.hash.replace("#", "");
   // Get ID from url  ( hash symbol 이용하기)
 
   if (rId) {
@@ -126,7 +128,7 @@ const controlRecipe = async () => {
       clearLoader();
       recipeView.renderRecipe(state.recipe);
     } catch (error) {
-      alert('Error processing recipe !');
+      alert("Error processing recipe !");
     }
   }
 };
@@ -148,23 +150,56 @@ const controlRecipe = async () => {
 // window.addEventListener('load', controlrecipe);          //_ url 에 hash 값 입력한 채로 load 한 경우 이벤트
 //                                                            ( load 할 때는 # 없애야하는 거 아닌지?)
 // forEach 이용해 위의 두 코드 한줄로 합치기
-['hashchange', 'load'].forEach((event) => window.addEventListener(event, controlRecipe));
+["hashchange", "load"].forEach((event) => window.addEventListener(event, controlRecipe));
+
+/* *******************
+ *  LIST Controller
+ ******************* */
+const controlList = () => {
+  // Create a new list IF there in none yet
+  if (!state.list) state.list = new List();
+
+  // Add each ingredient to the lsit
+  state.recipe.ingredients.forEach((el) => {
+    const item = state.list.addItem(el.count, el.unit, el.ingredient);
+    listView.renderItem(item);
+  });
+};
+
+// Handle delete and update list item events
+elements.shopping.addEventListener("click", (e) => {
+  const id = e.target.closest(".shopping__item").dataset.itemid;
+
+  // Handle the delete button
+  if (e.target.matches(".shopping__delete, .shopping__delete *")) {
+    // Delete from state
+    state.list.deleteItem(id);
+
+    // Delete from UI
+    listView.deleteItem(id);
+
+    // Handle the count update
+  } else if (e.target.matches(".shopping__count-value")) {
+    const val = parseFloat(e.target.value, 10);
+    state.list.updateCount(id, val);
+  }
+});
 
 // Recipe 의 + - 버튼 event
-elements.recipe.addEventListener('click', (e) => {
-  if (e.target.matches('.btn-decrease, .btn-decrease *')) {
-    /* .btn-decrease * : 해당 요소의 모든 자식 요소를 가리킴 !!!!!! */
+elements.recipe.addEventListener("click", (e) => {
+  if (e.target.matches(".btn-decrease, .btn-decrease *")) {
+    /* " .btn-decrease * " : 해당 요소의 모든 자식 요소를 가리킴 !!!!!! */
 
     // Decrease Btn
     if (state.recipe.servings > 1) {
       /* 1보다 작으면 줄일 수 없어야함 */
-      state.recipe.updateServings('dec');
+      state.recipe.updateServings("dec");
     }
-  } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+  } else if (e.target.matches(".btn-increase, .btn-increase *")) {
     // Increase Btn
-    state.recipe.updateServings('inc');
-  } else {
-    return;
+    state.recipe.updateServings("inc");
+  } else if (e.target.matches(".recipe__btn--add, .recipe__btn--add *")) {
+    controlList();
   }
   recipeView.updateServingsIngredients(state.recipe);
 });

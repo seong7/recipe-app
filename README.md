@@ -24,7 +24,8 @@ API 를 이용한 레시피 정보 검색 web app
 
   - #### Array 관련
 
-    > - Array.reduce() : [searchView.js]() > [[MDN >>]](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+    > - Array.reduce() : [searchView.js]() > [[MDN >>]](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)   
+    > (요소를 건너뛸 때 사용하기 좋음)
     > - Array.join() : [searchView.js]()
     > - Array.findIndex(callback fn) : callback 을 true return 하는 첫 번째 요소의 idx return [Recipe.js]()
     > - Array.include() : [Recipe.js]()
@@ -68,8 +69,9 @@ API 를 이용한 레시피 정보 검색 web app
   >   > page 가 load 되는 것을 감지함  
   >   > window.addEventListener('load', callback fn)
   > - ##### event.target.closest('selector') 사용법 [index.js]()
-  >   : event target 에서 가장 가까운 'selector' 요소를 가리킴 (부모 자식 간에만 서치함)
+  >   : event target 에서 가장 가까운 'selector' 요소를 return (부모 자식 간에만 서치함)
   > - ##### event.target.matches('selector') 사용법 [index.js]()
+  >   : target 이 지정된 요소와 동일한지 확인 후 boolean return
 
 * #### Package 관련
 
