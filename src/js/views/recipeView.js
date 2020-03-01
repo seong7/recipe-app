@@ -1,5 +1,5 @@
-import { Fraction } from 'fractional';
-import { elements } from './base';
+import { Fraction } from "fractional";
+import { elements } from "./base";
 
 // count format 변경
 const formatCount = (count) => {
@@ -7,7 +7,7 @@ const formatCount = (count) => {
     let newCount = count;
     // ex) count = 2.5  --> 5/2 --> 2 1/2
     // ex) count = 0.5  --> 1/2
-    const [int, dec] = newCount.toString().split('.');
+    const [int, dec] = newCount.toString().split(".");
     //   .map((el) => parseInt(el, 10));
 
     // 원래 integer 인 경우
@@ -18,11 +18,11 @@ const formatCount = (count) => {
     // 소수점 아래 2 자리에서 반올림한다.
     if (dec.length > 2) {
       const newDec = dec.substr(0, 2);
-      newCount = [int, newDec].join('.');
+      newCount = [int, newDec].join(".");
     }
 
     // 0.xx 경우
-    if (int === '0') {
+    if (int === "0") {
       // 외부 라이브러리 Fraction 사용 영역
       const fr = new Fraction(newCount);
       return `${fr.numerator}/${fr.denominator}`;
@@ -31,7 +31,7 @@ const formatCount = (count) => {
     const fr = new Fraction(newCount - parseInt(int, 10));
     return `${int} ${fr.numerator}/${fr.denominator}`;
   }
-  return '?';
+  return "?";
 };
 
 const createIngredient = (ingredient) => `
@@ -48,10 +48,10 @@ const createIngredient = (ingredient) => `
 `;
 
 export const clearRecipe = () => {
-  elements.recipe.innerHTML = '';
+  elements.recipe.innerHTML = "";
 };
 
-export const renderRecipe = (recipe) => {
+export const renderRecipe = (recipe, isLiked) => {
   const markup = `
     <figure class="recipe__fig">
         <img src="${recipe.img}" alt="${recipe.title}" class="recipe__img">
@@ -90,7 +90,7 @@ export const renderRecipe = (recipe) => {
         </div>
         <button class="recipe__love">
             <svg class="header__likes">
-                <use href="img/icons.svg#icon-heart-outlined"></use>
+                <use href="img/icons.svg#icon-heart${isLiked ? "" : "-outlined"}"></use>
             </svg>
         </button>
     </div>
@@ -99,7 +99,7 @@ export const renderRecipe = (recipe) => {
 
     <div class="recipe__ingredients">
         <ul class="recipe__ingredient-list">
-            ${recipe.ingredients.map((el) => createIngredient(el)).join('')}
+            ${recipe.ingredients.map((el) => createIngredient(el)).join("")}
         </ul>
         <button class="btn-small recipe__btn recipe__btn--add">
             <svg class="search__icon">
@@ -126,16 +126,16 @@ export const renderRecipe = (recipe) => {
         </a>
     </div>
   `;
-  elements.recipe.insertAdjacentHTML('afterbegin', markup);
+  elements.recipe.insertAdjacentHTML("afterbegin", markup);
 };
 
 // serving 과 ingredient 변화 주기
 export const updateServingsIngredients = (recipe) => {
   // Update Servings
-  document.querySelector('.recipe__info-data--people').textContent = recipe.servings;
+  document.querySelector(".recipe__info-data--people").textContent = recipe.servings;
 
   // Update Ingredients
-  const countElement = Array.from(document.querySelectorAll('.recipe__count'));
+  const countElement = Array.from(document.querySelectorAll(".recipe__count"));
   countElement.forEach((element, i) => {
     const el = element;
     el.textContent = formatCount(recipe.ingredients[i].count);
