@@ -3,38 +3,38 @@
 // export const multiply = (a, b) => a * b;
 // export const ID = 23;
 
-import { elements } from './base';
+import { elements } from "./base";
 
 export const getInput = () => elements.searchInput.value; // 한줄짜리 arrow fn : 자동으로 처리된 값을 return 해줌
 
 export const clearInput = () => {
-  elements.searchInput.value = ''; // return 값을 만들지 않기 위해 function 한줄이지만 감싸줌
+  elements.searchInput.value = ""; // return 값을 만들지 않기 위해 function 한줄이지만 감싸줌
 };
 
 // 결과 지우기
 export const clearResults = () => {
-  elements.searchResList.innerHTML = '';
-  elements.searchResPages.innerHTML = '';
+  elements.searchResList.innerHTML = "";
+  elements.searchResPages.innerHTML = "";
 };
 
 // 선택된 recipe css 변경
 export const highlightSelected = (id) => {
   // 모두 제거
-  const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+  const resultsArr = Array.from(document.querySelectorAll(".results__link"));
   resultsArr.forEach((el) => {
-    el.classList.remove('results__link--active');
+    el.classList.remove("results__link--active");
   });
 
   // 선택된 요소에 클래스 추가
-  document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+  document.querySelector(`.results__link[href*="#${id}"]`).classList.add("results__link--active");
 };
 
 // 결과 목록의 제목 길이 제한 후 '...' 추가
-const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit = 17) => {
   const newTitle = [];
   if (title.length > limit) {
     // Array.reduce( fn(Accumulator, Currunt El), Acc의 초기값);
-    title.split('').reduce((acc, cur) => {
+    title.split("").reduce((acc, cur) => {
       // '' 로 split 하면 문자 (또는 공백) 하나하나 모두 쪼개어 배열로 return 함
 
       if (acc + cur.length <= limit) {
@@ -54,7 +54,7 @@ const limitRecipeTitle = (title, limit = 17) => {
                                                                           // limit 보다 크므로 push 하지 않음
       */
 
-    return `${newTitle.join('')} ...`; // join : split 과 반대로 매개변수 값을 구분자로 추가하여 배열 요소들을 하나의 string 으로 합친다.
+    return `${newTitle.join("")} ...`; // join : split 과 반대로 매개변수 값을 구분자로 추가하여 배열 요소들을 하나의 string 으로 합친다.
   }
   return title;
 };
@@ -75,7 +75,7 @@ const renderRecipe = (recipe) => {
         </a>
     </li>
     `;
-  elements.searchResList.insertAdjacentHTML('beforeend', markup);
+  elements.searchResList.insertAdjacentHTML("beforeend", markup);
 };
 
 // 페이지 버튼 생성
@@ -84,10 +84,10 @@ const createButton = (page, type /* data-goto : (html 5 문법) */) =>
   // eslint-disable-next-line implicit-arrow-linebreak
   `
     <button class="btn-inline results__btn--${type}"
-     data-goto=${type === 'prev' ? page - 1 : page + 1}>
-        <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
+     data-goto=${type === "prev" ? page - 1 : page + 1}>
+        <span>Page ${type === "prev" ? page - 1 : page + 1}</span>
         <svg class="search__icon">
-            <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+            <use href="img/icons.svg#icon-triangle-${type === "prev" ? "left" : "right"}"></use>
         </svg>
     </button>
 `;
@@ -100,18 +100,18 @@ const renderButtons = (page, numResults, resPerPage) => {
 
   if (page === 1 && pages > 1) {
     // to next Button 만 출력
-    button = createButton(page, 'next');
+    button = createButton(page, "next");
   } else if (page < pages) {
     // 양쪽 버튼 모두 출력
     button = `
-            ${createButton(page, 'prev')}
-            ${createButton(page, 'next')}
+            ${createButton(page, "prev")}
+            ${createButton(page, "next")}
         `;
   } else if (page === pages && pages > 1) {
     // to previous Button 만 출력
-    button = createButton(page, 'prev');
+    button = createButton(page, "prev");
   }
-  elements.searchResPages.insertAdjacentHTML('afterbegin', button);
+  elements.searchResPages.insertAdjacentHTML("afterbegin", button);
 };
 
 // 검색 결과 출력

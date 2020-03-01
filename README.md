@@ -24,8 +24,8 @@ API 를 이용한 레시피 정보 검색 web app
 
   - #### Array 관련
 
-    > - Array.reduce() : [searchView.js]() > [[MDN >>]](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)   
-    > (요소를 건너뛸 때 사용하기 좋음)
+    > - Array.reduce() : [searchView.js]() > [[MDN >>]](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)  
+    >   (요소를 건너뛸 때 사용하기 좋음)
     > - Array.join() : [searchView.js]()
     > - Array.findIndex(callback fn) : callback 을 true return 하는 첫 번째 요소의 idx return [Recipe.js]()
     > - Array.include() : [Recipe.js]()
@@ -58,6 +58,11 @@ API 를 이용한 레시피 정보 검색 web app
   >   - html: \<button class="btn1" data-xx=2>
   >   - js: btn1.dataset.xx // = 2
   >   - selector : document.querySelector("[data-xx=2]");
+  > - ##### html tag 의 attribute 조작 [likesView.js]()
+  >   - 요소.setAttribute('속성명', '값');
+  > - ##### 속성 값으로 선택자(selector) 이용하기 [likesView.js]()
+  >   - document.querySelector(`.likes__link[href*="10"]`)  
+  >     : 해당 클래스 요소 중 href 가 10 인 모든 요소
 
 * #### Event 관련
 
