@@ -30,7 +30,7 @@ import { elements, renderLoader, clearLoader } from "./views/base";
  *  - Liked recipes
  */
 const state = {};
-window.state = state; // test 목적으로 global scope 에 공개
+// window.state = state; // test 목적으로 global scope 에 공개
 
 /* *******************
  *  Search Controller
@@ -130,8 +130,8 @@ const controlRecipe = async () => {
       clearLoader();
       recipeView.renderRecipe(state.recipe, state.likes.isLiked(rId));
     } catch (error) {
-      console.log(error);
-      alert("Error processing recipe !");
+      // console.log(error);
+      alert("문제가 발생했습니다. 다시 시도해주세요.");
     }
   }
 };
@@ -193,10 +193,6 @@ elements.shopping.addEventListener("click", (e) => {
  *  LIKE Controller
  ******************* */
 
-// testing
-state.likes = new Likes();
-likesView.toggleLikeMenu(state.likes.getNumLikes());
-
 const controlLike = () => {
   if (!state.likes) state.likes = new Likes();
   const currentID = state.recipe.id;
@@ -231,6 +227,21 @@ const controlLike = () => {
   }
   likesView.toggleLikeMenu(state.likes.getNumLikes());
 };
+
+// on Page Load - Restore Liked Recipes
+window.addEventListener("load", () => {
+  state.likes = new Likes();
+
+  // Restore Likes
+  state.likes.readStorage();
+
+  // Toggle like menu button
+  likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+  // Render the existing likes
+  state.likes.likes.forEach((like) => likesView.renderLike(like));
+});
+
 // Recipe 의 + - 버튼 event
 elements.recipe.addEventListener("click", (e) => {
   if (e.target.matches(".btn-decrease, .btn-decrease *")) {
