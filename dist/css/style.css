@@ -121,6 +121,22 @@ body {
   .btn-tiny:not(:last-child) {
     margin-right: .3rem; }
 
+.btn-short{
+  height: 1.75rem;
+  width: 8rem;
+  margin-left: 3rem;
+  line-height: 0.2;
+  display: inline-block;
+}
+
+.shopping__clear{
+  background-image: linear-gradient(to right bottom, rgb(251, 145, 137), #F48982);
+  visibility: hidden;
+}
+.shopping__copy{
+  visibility: hidden;
+}
+
 .heading-2 {
   font-size: 1.8rem;
   font-weight: 600;

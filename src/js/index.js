@@ -164,11 +164,14 @@ const controlList = () => {
   // Create a new list IF there in none yet
   if (!state.list) state.list = new List();
 
+  
   // Add each ingredient to the lsit
   state.recipe.ingredients.forEach((el) => {
-    const item = state.list.addItem(el.count, el.unit, el.ingredient);
+    const item = state.list.addItem(el.count, el.unit, el.ingredient);   // return 새 item
     listView.renderItem(item);
   });
+
+  listView.toggleShopBtn(state.list.items.length);
 };
 
 // Handle delete and update list item events
@@ -187,7 +190,10 @@ elements.shopping.addEventListener("click", (e) => {
   } else if (e.target.matches(".shopping__count-value")) {
     const val = parseFloat(e.target.value, 10);
     state.list.updateCount(id, val);
+    // state.list.
   }
+
+  listView.toggleShopBtn(state.list.items.length);
 });
 
 /* *******************
@@ -255,6 +261,7 @@ window.addEventListener("load", () => {
   state.list.items.forEach((item) => {
     listView.renderItem(item);
   });
+  listView.toggleShopBtn(state.list.items.length);
 });
 
 // Recipe 의 + - 버튼 event
@@ -280,6 +287,16 @@ elements.recipe.addEventListener("click", (e) => {
     controlLike();
   }
 });
+
+// shopping list clear 버튼 event
+elements.shoppingClear.addEventListener("click", (e) => {
+  state.list.clearItem();
+
+  // listView.renderItem(state.list);
+  listView.clearItem();
+
+  listView.toggleShopBtn(state.list.items.length);
+})
 
 // const l = newList();
 // window.l = new List();

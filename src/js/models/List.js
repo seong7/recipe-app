@@ -44,6 +44,12 @@ export default class List {
     this.persistData();
   }
 
+  clearItem(){
+    this.items = [];
+
+    this.persistData();
+  }
+
   updateCount(id, newCount) {
     this.items.find((el) => el.id === id).count = newCount; // callback fn 이 true ruturn 하는 첫 elemt
   }
