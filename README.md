@@ -7,7 +7,7 @@ API 를 이용한 레시피 정보 검색 web app
 >
 > [https://seongjin-recipe.netlify.com](https://seongjin-recipe.netlify.com)
 
-> ### Used API
+> ### Resource
 >
 > [https://forkify-api.herokuapp.com](https://forkify-api.herokuapp.com)
 
