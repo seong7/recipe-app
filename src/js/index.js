@@ -30,7 +30,7 @@ import { elements, renderLoader, clearLoader } from "./views/base";
  *  - Liked recipes
  */
 const state = {};
-// window.state = state; // test 목적으로 global scope 에 공개
+window.state = state; // test 목적으로 global scope 에 공개
 
 /* *******************
  *  Search Controller
@@ -77,7 +77,7 @@ elements.searchForm.addEventListener("submit", (e) => {
   controlSearch();
 });
 
-// 검색결과 페이지 버튼 click event
+// 검색결과 pagination 버튼 click event
 // event delegation 이용해야함 (page load 후에 늦게 rendering 되는 버튼임)
 elements.searchRes.addEventListener("click", (e) => {
   const btn = e.target.closest(".btn-inline");
@@ -153,7 +153,8 @@ const controlRecipe = async () => {
 // window.addEventListener('load', controlrecipe);          //_ url 에 hash 값 입력한 채로 load 한 경우 이벤트
 //                                                            ( load 할 때는 # 없애야하는 거 아닌지?)
 // forEach 이용해 위의 두 코드 한줄로 합치기
-["hashchange", "load"].forEach((event) => window.addEventListener(event, controlRecipe));
+// ["hashchange", "load"].forEach((event) => window.addEventListener(event, controlRecipe));
+["hashchange"].forEach((event) => window.addEventListener(event, controlRecipe));
 
 /* *******************
  *  LIST Controller
@@ -230,6 +231,7 @@ const controlLike = () => {
 
 // on Page Load - Restore Liked Recipes
 window.addEventListener("load", () => {
+  // likes 생성
   state.likes = new Likes();
 
   // Restore Likes
@@ -240,6 +242,19 @@ window.addEventListener("load", () => {
 
   // Render the existing likes
   state.likes.likes.forEach((like) => likesView.renderLike(like));
+
+  ///////////////////////////////
+  
+  // list 생성
+  state.list = new List();
+  
+  // Restore List
+  state.list.readStorage();
+
+  // Render the existing List
+  state.list.items.forEach((item) => {
+    listView.renderItem(item);
+  });
 });
 
 // Recipe 의 + - 버튼 event
@@ -267,4 +282,4 @@ elements.recipe.addEventListener("click", (e) => {
 });
 
 // const l = newList();
-window.l = new List();
+// window.l = new List();

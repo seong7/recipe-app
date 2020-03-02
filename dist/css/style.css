@@ -317,7 +317,7 @@ body {
       position: absolute;
       top: 0;
       left: 0;
-      background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
+      background-image: linear-gradient(to right bottom, #FBDB89, rgba(244, 130, 130, 0.1));
       opacity: .6; }
   .recipe__img {
     width: 100%;
@@ -437,13 +437,13 @@ body {
     font-weight: 700; }
 
 .shopping {
-  padding: 3rem 4rem;
+  padding: 3rem 2rem;
   display: flex;
   flex-direction: column; }
   .shopping__list {
     list-style: none;
     max-height: 77rem;
-    overflow: scroll; }
+    overflow-y: scroll; }
   .shopping__item {
     display: flex;
     align-items: flex-start;
