@@ -30,7 +30,7 @@ import { elements, renderLoader, clearLoader } from "./views/base";
  *  - Liked recipes
  */
 const state = {};
-// window.state = state; // test 목적으로 global scope 에 공개
+window.state = state; // test 목적으로 global scope 에 공개
 
 /* *******************
  *  Search Controller
@@ -77,7 +77,7 @@ elements.searchForm.addEventListener("submit", (e) => {
   controlSearch();
 });
 
-// 검색결과 페이지 버튼 click event
+// 검색결과 pagination 버튼 click event
 // event delegation 이용해야함 (page load 후에 늦게 rendering 되는 버튼임)
 elements.searchRes.addEventListener("click", (e) => {
   const btn = e.target.closest(".btn-inline");
@@ -153,7 +153,8 @@ const controlRecipe = async () => {
 // window.addEventListener('load', controlrecipe);          //_ url 에 hash 값 입력한 채로 load 한 경우 이벤트
 //                                                            ( load 할 때는 # 없애야하는 거 아닌지?)
 // forEach 이용해 위의 두 코드 한줄로 합치기
-["hashchange", "load"].forEach((event) => window.addEventListener(event, controlRecipe));
+// ["hashchange", "load"].forEach((event) => window.addEventListener(event, controlRecipe));
+["hashchange"].forEach((event) => window.addEventListener(event, controlRecipe));
 
 /* *******************
  *  LIST Controller
@@ -163,11 +164,14 @@ const controlList = () => {
   // Create a new list IF there in none yet
   if (!state.list) state.list = new List();
 
+  
   // Add each ingredient to the lsit
   state.recipe.ingredients.forEach((el) => {
-    const item = state.list.addItem(el.count, el.unit, el.ingredient);
+    const item = state.list.addItem(el.count, el.unit, el.ingredient);   // return 새 item
     listView.renderItem(item);
   });
+
+  listView.toggleShopBtn(state.list.items.length);
 };
 
 // Handle delete and update list item events
@@ -186,7 +190,10 @@ elements.shopping.addEventListener("click", (e) => {
   } else if (e.target.matches(".shopping__count-value")) {
     const val = parseFloat(e.target.value, 10);
     state.list.updateCount(id, val);
+    // state.list.
   }
+
+  listView.toggleShopBtn(state.list.items.length);
 });
 
 /* *******************
@@ -230,6 +237,7 @@ const controlLike = () => {
 
 // on Page Load - Restore Liked Recipes
 window.addEventListener("load", () => {
+  // likes 생성
   state.likes = new Likes();
 
   // Restore Likes
@@ -240,6 +248,20 @@ window.addEventListener("load", () => {
 
   // Render the existing likes
   state.likes.likes.forEach((like) => likesView.renderLike(like));
+
+  ///////////////////////////////
+  
+  // list 생성
+  state.list = new List();
+  
+  // Restore List
+  state.list.readStorage();
+
+  // Render the existing List
+  state.list.items.forEach((item) => {
+    listView.renderItem(item);
+  });
+  listView.toggleShopBtn(state.list.items.length);
 });
 
 // Recipe 의 + - 버튼 event
@@ -266,5 +288,42 @@ elements.recipe.addEventListener("click", (e) => {
   }
 });
 
+// shopping list clear 버튼 event
+elements.shoppingClear.addEventListener("click", () => {
+  state.list.clearItem();
+
+  // listView.renderItem(state.list);
+  listView.clearItem();
+
+  listView.toggleShopBtn(state.list.items.length);
+})
+
+// shopping list copy 버튼 event
+elements.shoppingCopy.addEventListener("click", () => {
+  // state.list.items 의 값 string 으로 변환
+  // const list = JSON.stringify(state.list.items);
+  let copyText = "";
+
+  // string 조작
+  state.list.items.forEach((obj) => {
+    copyText
+    += (Math.floor(obj.count*10))/10 +" "
+    + (obj.unit ? obj.unit : "") + " "
+    + (obj.ingredient + " | ");
+  })
+
+  // 임시 textarea 생성해 값으로 해당 string 넣어주기
+  let tempEl = document.createElement("textarea");
+  tempEl.value = copyText;
+  document.body.appendChild(tempEl);
+
+  // 값 선택하여 복사 후 textarea 제거
+  tempEl.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempEl);
+
+  alert("복사되었습니다.");
+})
+
 // const l = newList();
-window.l = new List();
+// window.l = new List();

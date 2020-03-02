@@ -26,3 +26,13 @@ export const deleteItem = (id) => {
   const item = document.querySelector(`[data-itemid="${id}"]`);
   if (item) item.parentElement.removeChild(item);
 };
+
+export const clearItem = () => {
+  elements.shopping.innerHTML = "";
+}
+
+export const toggleShopBtn = (numList) => {
+  [elements.shoppingClear, elements.shoppingCopy].forEach((btn) => {
+    btn.style.visibility = numList > 0 ? "visible" : "hidden";
+  });
+}

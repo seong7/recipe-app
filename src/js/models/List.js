@@ -14,7 +14,21 @@ export default class List {
       ingredient,
     };
     this.items.push(item);
+
+    // localStorage 에 저장
+    this.persistData();
+
     return item;
+  }
+
+  persistData(){
+    localStorage.setItem("lists", JSON.stringify(this.items));
+  }
+
+  readStorage(){
+    const storage = JSON.parse(localStorage.getItem("lists"));
+    
+    if(storage) this.items = storage;
   }
 
   deleteItem(id) {
@@ -25,6 +39,15 @@ export default class List {
                .slice(1, 2) -> returns 4,  original array is [2, 4, 8]  // original array 변화 없음
     */
     this.items.splice(index, 1); // findIndex 로 찾은 idx 의 요소 하나만 삭제
+
+    // localStorage 에 변경사항 저장
+    this.persistData();
+  }
+
+  clearItem(){
+    this.items = [];
+
+    this.persistData();
   }
 
   updateCount(id, newCount) {

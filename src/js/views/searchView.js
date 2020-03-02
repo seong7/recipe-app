@@ -26,7 +26,9 @@ export const highlightSelected = (id) => {
   });
 
   // 선택된 요소에 클래스 추가
-  document.querySelector(`.results__link[href*="#${id}"]`).classList.add("results__link--active");
+  if(document.querySelector(`.results__link[href*="#${id}"]`)){
+    document.querySelector(`.results__link[href*="#${id}"]`).classList.add("results__link--active");
+  }
 };
 
 // 결과 목록의 제목 길이 제한 후 '...' 추가
@@ -114,7 +116,7 @@ const renderButtons = (page, numResults, resPerPage) => {
   elements.searchResPages.insertAdjacentHTML("afterbegin", button);
 };
 
-// 검색 결과 출력
+// 검색 결과 출력 (pagination)
 export const renderResults = (recipes, page = 1, resPerPage = 10) => {
   const start = (page - 1) * resPerPage;
   const end = page * resPerPage;
