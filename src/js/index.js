@@ -289,13 +289,40 @@ elements.recipe.addEventListener("click", (e) => {
 });
 
 // shopping list clear 버튼 event
-elements.shoppingClear.addEventListener("click", (e) => {
+elements.shoppingClear.addEventListener("click", () => {
   state.list.clearItem();
 
   // listView.renderItem(state.list);
   listView.clearItem();
 
   listView.toggleShopBtn(state.list.items.length);
+})
+
+// shopping list copy 버튼 event
+elements.shoppingCopy.addEventListener("click", () => {
+  // state.list.items 의 값 string 으로 변환
+  // const list = JSON.stringify(state.list.items);
+  let copyText = "";
+
+  // string 조작
+  state.list.items.forEach((obj) => {
+    copyText
+    += (Math.floor(obj.count*10))/10 +" "
+    + (obj.unit ? obj.unit : "") + " "
+    + (obj.ingredient + " | ");
+  })
+
+  // 임시 textarea 생성해 값으로 해당 string 넣어주기
+  let tempEl = document.createElement("textarea");
+  tempEl.value = copyText;
+  document.body.appendChild(tempEl);
+
+  // 값 선택하여 복사 후 textarea 제거
+  tempEl.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempEl);
+
+  alert("복사되었습니다.");
 })
 
 // const l = newList();
