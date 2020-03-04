@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 // 하나의 recipe 에 대한 ingredient list
 export default class List {
@@ -21,14 +21,14 @@ export default class List {
     return item;
   }
 
-  persistData(){
+  persistData() {
     localStorage.setItem("lists", JSON.stringify(this.items));
   }
 
-  readStorage(){
+  readStorage() {
     const storage = JSON.parse(localStorage.getItem("lists"));
-    
-    if(storage) this.items = storage;
+
+    if (storage) this.items = storage;
   }
 
   deleteItem(id) {
@@ -44,7 +44,7 @@ export default class List {
     this.persistData();
   }
 
-  clearItem(){
+  clearItem() {
     this.items = [];
 
     this.persistData();

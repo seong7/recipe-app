@@ -4,7 +4,12 @@ export default class Likes {
   }
 
   addLike(id, title, author, img) {
-    const like = { id, title, author, img };
+    const like = {
+      id,
+      title,
+      author,
+      img,
+    };
     this.likes.push(like);
 
     // Persist data in localStorage
@@ -21,7 +26,7 @@ export default class Likes {
   }
 
   isLiked(id) {
-    return this.likes.findIndex((el) => el.id === id) !== -1;  // 배열에 해당 id 없으면 -1 return 됨
+    return this.likes.findIndex((el) => el.id === id) !== -1; // 배열에 해당 id 없으면 -1 return 됨
   }
 
   getNumLikes() {
