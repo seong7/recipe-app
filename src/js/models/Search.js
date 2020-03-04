@@ -1,7 +1,7 @@
 // export default 'I am an exported string.';  // default export 는 하나의 data 만 export 가능
 
-import axios from 'axios'; // npm module 의 경우 경로 대신 package name 만 입력하면 됨
-import { key, proxy } from '../config';
+import axios from "axios"; // npm module 의 경우 경로 대신 package name 만 입력하면 됨
+import { key, proxy } from "../config";
 
 export default class Search {
   constructor(query) {
@@ -32,7 +32,7 @@ export default class Search {
       // console.log(this.result);
     } catch (error) {
       // alert(error);
-      alert('해당 음식 정보가 없습니다.');
+      alert("해당 음식 정보가 없습니다.");
     }
   }
 }

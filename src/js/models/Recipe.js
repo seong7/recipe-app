@@ -1,5 +1,6 @@
-import axios from 'axios';
-import { key, proxy } from '../config';
+/* eslint-disable no-eval */
+import axios from "axios";
+import { key, proxy } from "../config";
 
 export default class Recipe {
   constructor(id) {
@@ -19,7 +20,7 @@ export default class Recipe {
       this.ingredients = res.data.recipe.ingredients; // array
     } catch (error) {
       // alert(error);
-      alert('정보를 불러오는 중에 문제가 발생했습니다. 다시 시도해주세요.');
+      alert("정보를 불러오는 중에 문제가 발생했습니다. 다시 시도해주세요.");
     }
   }
 
@@ -52,17 +53,17 @@ export default class Recipe {
     // } ===> array.slice(startIndex, endIndex(생략가능))  으로 쉽게 구현가능....
 
     const unitsLong = [
-      'tablespoons',
-      'tablespoon',
-      'ounces',
-      'ounce',
-      'teaspoons',
-      'teaspoon',
-      'cups',
-      'pounds',
+      "tablespoons",
+      "tablespoon",
+      "ounces",
+      "ounce",
+      "teaspoons",
+      "teaspoon",
+      "cups",
+      "pounds",
     ];
-    const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound']; // 위의 단위들의 요약 버전
-    const units = [...unitsShort, 'kg', 'g']; // 위에 kg, g 추가하는 법 예시
+    const unitsShort = ["tbsp", "tbsp", "oz", "oz", "tsp", "tsp", "cup", "pound"]; // 위의 단위들의 요약 버전
+    const units = [...unitsShort, "kg", "g"]; // 위에 kg, g 추가하는 법 예시
 
     const newIngredients = this.ingredients.map((el, index) => {
       // 1) Uniform units (단위 통합)
@@ -73,12 +74,12 @@ export default class Recipe {
       });
 
       // 2) Remove parenthesized words
-      ingredient = ingredient.replace(/\s*\([^)]*\)\s*/g, ' '); // ~~~ (@@) -> ~~~
-      ingredient = ingredient.replace(/,/g, ''); // ~~,~~ -> ~~~~
+      ingredient = ingredient.replace(/\s*\([^)]*\)\s*/g, " "); // ~~~ (@@) -> ~~~
+      ingredient = ingredient.replace(/,/g, ""); // ~~,~~ -> ~~~~
 
       // 3) Parse ingredients into an Object {count, unit and ingredient}
 
-      const arrIng = ingredient.split(' ');
+      const arrIng = ingredient.split(" ");
 
       // unit 포함되어 있는지 여부 확인
       const unitIndex = arrIng.findIndex((el2) => units.includes(el2));
@@ -101,16 +102,16 @@ export default class Recipe {
         // ex) 4-1/2 cups --> eval(4+1/2)
         let count;
         if (arrCount.length === 1) {
-          count = eval(arrIng[0].replace('-', '+')); // 해당 data에서 - 는 실제로 + 를 의미하므로
+          count = eval(arrIng[0].replace("-", "+")); // 해당 data에서 - 는 실제로 + 를 의미하므로
         } else {
-          count = eval(arrIng.slice(0, unitIndex).join('+')); // eval('4+1/2') --> 4.5
+          count = eval(arrIng.slice(0, unitIndex).join("+")); // eval('4+1/2') --> 4.5
         }
 
         objIng = {
           // count : parseInt(arrIng[0]),
           count,
           unit: arrIng[unitIndex],
-          ingredient: arrIng.slice(unitIndex + 1).join(' '),
+          ingredient: arrIng.slice(unitIndex + 1).join(" "),
         };
       } else if (parseInt(arrIng[0], 10) || numPattern.test(arrIng[0])) {
         /* 10진수 integer 로 변환
@@ -134,15 +135,15 @@ export default class Recipe {
 
         objIng = {
           count: parseInt(arrIng[0], 10),
-          unit: '',
-          ingredient: arrIng.slice(1).join(' '),
+          unit: "",
+          ingredient: arrIng.slice(1).join(" "),
         };
       } else if (unitIndex === -1) {
         // There is NO unit and 1st element is NOT a number
 
         objIng = {
           count: 1,
-          unit: '',
+          unit: "",
           ingredient,
           // --> ingredient : ingredient 와 같음  (ES6 문법)
         };
@@ -155,7 +156,7 @@ export default class Recipe {
   updateServings(btnType) {
     const type = btnType;
     // Serving
-    const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
+    const newServings = type === "dec" ? this.servings - 1 : this.servings + 1;
 
     // Ingredients
     this.ingredients.forEach((ingredient) => {

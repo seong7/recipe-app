@@ -26,7 +26,7 @@ export const highlightSelected = (id) => {
   });
 
   // 선택된 요소에 클래스 추가
-  if(document.querySelector(`.results__link[href*="#${id}"]`)){
+  if (document.querySelector(`.results__link[href*="#${id}"]`)) {
     document.querySelector(`.results__link[href*="#${id}"]`).classList.add("results__link--active");
   }
 };

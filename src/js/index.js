@@ -164,10 +164,9 @@ const controlList = () => {
   // Create a new list IF there in none yet
   if (!state.list) state.list = new List();
 
-  
   // Add each ingredient to the lsit
   state.recipe.ingredients.forEach((el) => {
-    const item = state.list.addItem(el.count, el.unit, el.ingredient);   // return 새 item
+    const item = state.list.addItem(el.count, el.unit, el.ingredient); // return 새 item
     listView.renderItem(item);
   });
 
@@ -204,7 +203,8 @@ const controlLike = () => {
   if (!state.likes) state.likes = new Likes();
   const currentID = state.recipe.id;
 
-  // User has not yet liked current recipe
+  // If user has not yet liked current recipe
+  // (user 가 해당 recipe 아직 좋아요 안한 상태)
   if (!state.likes.isLiked(currentID)) {
     // Add like to the state
     const newLike = state.likes.addLike(
@@ -216,7 +216,7 @@ const controlLike = () => {
     // Toggle the like button
     likesView.toggleLikeBtn(true);
 
-    //Add like to UI list
+    // Add like to UI list
     likesView.renderLike(newLike);
     // console.log(state.likes);
 
@@ -233,10 +233,19 @@ const controlLike = () => {
     // console.log(state.likes);
   }
   likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+  // 잠깐 Like List 보이기
+  if (state.likes.likes.length > 0) likesView.blinkLikePannel();
+  // likesView.blinkLikePannel();
 };
 
 // on Page Load - Restore Liked Recipes
 window.addEventListener("load", () => {
+  // url hash 초기화
+  document.location.hash = "";
+
+  // ///////////////////////////
+
   // likes 생성
   state.likes = new Likes();
 
@@ -249,11 +258,11 @@ window.addEventListener("load", () => {
   // Render the existing likes
   state.likes.likes.forEach((like) => likesView.renderLike(like));
 
-  ///////////////////////////////
-  
+  // /////////////////////////////
+
   // list 생성
   state.list = new List();
-  
+
   // Restore List
   state.list.readStorage();
 
@@ -296,7 +305,7 @@ elements.shoppingClear.addEventListener("click", () => {
   listView.clearItem();
 
   listView.toggleShopBtn(state.list.items.length);
-})
+});
 
 // shopping list copy 버튼 event
 elements.shoppingCopy.addEventListener("click", () => {
@@ -306,14 +315,13 @@ elements.shoppingCopy.addEventListener("click", () => {
 
   // string 조작
   state.list.items.forEach((obj) => {
-    copyText
-    += (Math.floor(obj.count*10))/10 +" "
-    + (obj.unit ? obj.unit : "") + " "
-    + (obj.ingredient + " | ");
-  })
+    copyText += `${Math.floor(obj.count * 10) / 10} ${obj.unit ? `${obj.unit} ` : ""}${
+      obj.ingredient
+    } | `;
+  });
 
   // 임시 textarea 생성해 값으로 해당 string 넣어주기
-  let tempEl = document.createElement("textarea");
+  const tempEl = document.createElement("textarea");
   tempEl.value = copyText;
   document.body.appendChild(tempEl);
 
@@ -323,7 +331,7 @@ elements.shoppingCopy.addEventListener("click", () => {
   document.body.removeChild(tempEl);
 
   alert("복사되었습니다.");
-})
+});
 
 // const l = newList();
 // window.l = new List();

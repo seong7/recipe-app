@@ -21,6 +21,7 @@
     "global-require": 0,
     "eslint linebreak-style": [0, "error", "windows"],
     "no-alert": "warn",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "quotes": [2, "double", { "avoidEscape": false }]
   }
 }

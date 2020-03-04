@@ -1,5 +1,5 @@
 import { elements } from "./base";
-import { limitRecipeTitle } from "./searchView"; // fn 하나만 import 할 때는 {} 사용
+import { limitRecipeTitle } from "./searchView"; // 특정 Fn 하나만 import 할 때는 {} 사용
 
 export const toggleLikeBtn = (isLiked) => {
   const iconString = isLiked ? "icon-heart" : "icon-heart-outlined";
@@ -31,4 +31,15 @@ export const renderLike = (like) => {
 export const deleteLike = (id) => {
   const el = document.querySelector(`.likes__link[href*="${id}"]`).parentElement;
   if (el) el.parentElement.removeChild(el);
+};
+
+export const blinkLikePannel = () => {
+  elements.likesPanel.style.opacity = 1;
+  elements.likesPanel.style.visibility = "visible";
+  setTimeout(() => {
+    elements.likesPanel.style.opacity = 0;
+    elements.likesPanel.style.visibility = "hidden";
+  }, 1000);
+
+  //  callback: (...args: any[]) => void, ms: number, ...args: any[]
 };
