@@ -570,6 +570,9 @@ body {
   background: #eba09e;
   border-radius: 100px;
 
+}.shopping__list::-webkit-scrollbar-track{
+  background: #f5dbda;
+  border-radius: 100px;
 }
 .shopping__wrapper {
   overflow: auto;
