@@ -559,7 +559,17 @@ body {
 .shopping__list {
   list-style: none;
   max-height: 77rem;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
+}
+.shopping__list::-webkit-scrollbar {
+  width: 5px;
+  background: #eee;
+  border-radius: 100px;
+}
+.shopping__list::-webkit-scrollbar-thumb{
+  background: #eba09e;
+  border-radius: 100px;
+
 }
 .shopping__wrapper {
   overflow: auto;
