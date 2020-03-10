@@ -561,6 +561,7 @@ body {
   max-height: 77rem;
   overflow-y: scroll;
 }
+/* Scroll bar */
 .shopping__list::-webkit-scrollbar {
   width: 5px;
   background: #eee;
