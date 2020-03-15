@@ -732,6 +732,43 @@
     .container{
       grid-template-columns: 1.3fr 3fr;
       height: 100%;
+      /* header */
+      .header__logo{
+        margin-left: 4rem;
+        height: 4.5rem;
+      }
+      .search{
+        margin-left: 1rem;
+        padding-left: 2rem;
+        input{
+          width: 30rem;
+        }
+        button{
+          padding: 1.3rem 2rem;
+          svg{
+            margin-right: 0;
+          }
+        }
+      }
+      .likes{
+        min-width:0;
+        .likes__field{
+          padding: 0 3rem;
+          .likes__icon{
+            height: 3.75rem;
+            width: 3.75rem;
+          }
+        }
+        .likes__panel{
+          width: inherit;
+          .likes__link{
+            padding: 1.5rem 1rem;
+            .likes__data{
+              display: none;
+            }
+          }
+        }
+      }
     }
     .shopping{
       display: none;
@@ -791,7 +828,7 @@
         .likes__panel{
           width: inherit;
           .likes__link{
-            padding: 1.5rem 1.5rem;
+            padding: 1.5rem 1rem;
             .likes__data{
               display: none;
             }

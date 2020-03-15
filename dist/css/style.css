@@ -953,6 +953,43 @@ body {
     -ms-grid-columns: 1.3fr 3fr;
         grid-template-columns: 1.3fr 3fr;
     height: 100%;
+    /* header */
+  }
+  .container .header__logo {
+    margin-left: 4rem;
+    height: 4.5rem;
+  }
+  .container .search {
+    margin-left: 1rem;
+    padding-left: 2rem;
+  }
+  .container .search input {
+    width: 30rem;
+  }
+  .container .search button {
+    padding: 1.3rem 2rem;
+  }
+  .container .search button svg {
+    margin-right: 0;
+  }
+  .container .likes {
+    min-width: 0;
+  }
+  .container .likes .likes__field {
+    padding: 0 3rem;
+  }
+  .container .likes .likes__field .likes__icon {
+    height: 3.75rem;
+    width: 3.75rem;
+  }
+  .container .likes .likes__panel {
+    width: inherit;
+  }
+  .container .likes .likes__panel .likes__link {
+    padding: 1.5rem 1rem;
+  }
+  .container .likes .likes__panel .likes__link .likes__data {
+    display: none;
   }
   .shopping {
     display: none;
@@ -1011,7 +1048,7 @@ body {
     width: inherit;
   }
   .container .likes .likes__panel .likes__link {
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem 1rem;
   }
   .container .likes .likes__panel .likes__link .likes__data {
     display: none;
