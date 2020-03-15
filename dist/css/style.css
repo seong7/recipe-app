@@ -366,15 +366,14 @@ body {
   transition: all 0.3s;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .likes__field:hover {
-    background-color: #f2efee !important;
-  }
-  .likes__panel:hover,
-  .likes__field:hover + .likes__panel {
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
+.likes__field:hover {
+  background-color: #f2efee !important;
+}
+
+.likes__panel:hover,
+.likes__field:hover + .likes__panel {
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .likes__icon {
@@ -974,20 +973,25 @@ body {
     margin-right: 0;
   }
   .container .likes {
-    min-width: 0;
+    min-width: 5%;
   }
   .container .likes .likes__field {
     padding: 0 3rem;
   }
   .container .likes .likes__field .likes__icon {
-    height: 3.75rem;
-    width: 3.75rem;
+    height: 3rem;
+    width: 3rem;
   }
   .container .likes .likes__panel {
     width: inherit;
   }
   .container .likes .likes__panel .likes__link {
-    padding: 1.5rem 1rem;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .container .likes .likes__panel .likes__link .likes__fig {
+    margin-right: 0;
   }
   .container .likes .likes__panel .likes__link .likes__data {
     display: none;
@@ -1016,7 +1020,7 @@ body {
   }
   /* header */
   .header__logo {
-    margin-left: 1rem;
+    margin-left: 3.9%;
     height: 3rem;
   }
   .search {
@@ -1049,7 +1053,12 @@ body {
     width: inherit;
   }
   .likes .likes__panel .likes__link {
-    padding: 1.5rem 1rem;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .likes .likes__panel .likes__link .likes__fig {
+    margin-right: 0;
   }
   .likes .likes__panel .likes__link .likes__data {
     display: none;
