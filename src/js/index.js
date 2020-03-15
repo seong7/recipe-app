@@ -12,6 +12,7 @@
 // console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and
 //              ${searchView.multiply(3, 5)}. ${str}}`);
 
+import 'normalize.css';
 import Search from "./models/Search";
 import Recipe from "./models/Recipe";
 import List from "./models/List";

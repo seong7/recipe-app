@@ -1,3 +1,6 @@
+// @import "../../node_modules/normalize.css/normalize.css";
+// normalize.css import
+
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +16,7 @@
     box-sizing: border-box;
     font-size: 62.5%;
   }
-  @media only screen and (max-width: 68.75em) {
+  @media only screen and (max-width: 1200px) {
     html {
       font-size: 50%;
     }
@@ -42,11 +45,12 @@
     grid-template-columns: 1.1fr 2fr 1.1fr;
     grid-template-areas: "head head head" "list recipe shopping";
   }
-  @media only screen and (max-width: 68.75em) {
+  @media only screen and (max-width: 1200px) {
     .container {
-      width: 100%;
-      margin: 0;
-      border-radius: 0;
+      // width: 100%;
+      // height: 100%;
+      // margin-top: 0;
+      // border-radius: 0;
     }
   }
   
@@ -165,6 +169,9 @@
     margin-left: 3rem;
     line-height: 0.2;
     display: inline-block;
+  }
+  .shopping__btn{
+    min-width: 178.3px;
   }
   
   .shopping__clear {
@@ -300,6 +307,7 @@
   .results,
   .likes {
     padding: 3rem 0;
+    min-width: 227.65px;
   }
   .results__list,
   .likes__list {
@@ -469,7 +477,7 @@
     transform: translateY(5px);
     transition: all 0.4s;
   }
-  .recipe:hover .recipe__info-buttons {
+  .recipe__info-buttons {
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
@@ -645,3 +653,125 @@
     visibility: visible;
   }
   
+  /*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+  ##Device = 랩탑, 데스크탑
+  ##Screen = 1025px에서 1280px 사이
+  */
+  
+  @media (min-width: 1025px) {
+  
+    //CSS
+    .recipe__info-buttons{
+      visibility: hidden;
+    }
+    .recipe:hover .recipe__info-buttons {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+  }
+  
+  /*
+  ##Device = Tablets, Ipads (portrait),
+  ##Screen = B/w 768px to 1024px
+  ##Device = 태블릿, 아이패드(세로),
+  ##Screen = 768px에서 1024px 사이
+  */
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+  
+    //CSS
+    .container{
+      grid-template-columns: 1.3fr 3fr;
+      height: 100%;
+    }
+    .shopping{
+      display: none;
+    }
+    .recipe__info-buttons {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+  }
+
+
+  @media (min-width: 961px) {
+    .shopping{
+      display: flex;
+    }
+  }
+  @media (max-width: 961px) {
+    .container{
+      margin: 0;
+      border-radius: 0;
+    }
+  }
+
+
+  
+  /*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+  ##Device = 태블릿, 아이패드(가로)
+  ##Screen = 768px에서 1024px 사이
+  */
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
+  
+  /*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+  ##Device = 저해상도 태블릿, 모바일(가로)
+  ##Screen = 481px에서 767px 사이
+  */
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+  
+    //CSS
+    .container{
+      grid-template-columns: 1.3fr 3fr;
+      height: 100%;
+    }
+    .shopping{
+      display: none;
+    }
+    .recipe__info-buttons {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+  }
+  
+  /*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+  ##Device = 대부분의 스마트폰 모바일 기기(세로)
+  ##Screen = 320px에서 479px 사이
+  */
+  
+  @media (max-width: 480px) {
+  
+    //CSS
+    .container{
+      grid-template-columns: 1fr;
+    }
+    .results,
+    .shopping{
+      display: none;
+    }
+    .recipe{
+      width: 100%;
+    }
+    .recipe__info-buttons {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+  }
+  // ##출처: https://gist.github.com/gokulkrishh/242e68d1ee94ad05f488
