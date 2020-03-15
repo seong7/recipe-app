@@ -274,16 +274,13 @@
     height: 100%;
     transition: all 0.3s;
   }
-  @media (hover: hover) and (pointer: fine) {
-
-    .likes__field:hover {
-      background-color: #f2efee !important;
-    }
-    .likes__panel:hover,
-    .likes__field:hover + .likes__panel {
-      visibility: visible !important;
-      opacity: 1 !important;
-    }
+  .likes__field:hover {
+    background-color: #f2efee !important;
+  }
+  .likes__panel:hover,
+  .likes__field:hover + .likes__panel {
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   .likes__icon {
     fill: #f59a83;
@@ -735,6 +732,7 @@
     .container{
       grid-template-columns: 1.3fr 3fr;
       height: 100%;
+
       /* header */
       .header__logo{
         margin-left: 4rem;
@@ -754,18 +752,22 @@
         }
       }
       .likes{
-        min-width:0;
+        min-width:5%;
         .likes__field{
           padding: 0 3rem;
           .likes__icon{
-            height: 3.75rem;
-            width: 3.75rem;
+            height: 3rem;
+            width: 3rem;
           }
         }
         .likes__panel{
           width: inherit;
           .likes__link{
-            padding: 1.5rem 1rem;
+            // padding: 1.5rem 1rem;
+            justify-content: center;
+            .likes__fig{
+              margin-right: 0;
+            }
             .likes__data{
               display: none;
             }
@@ -802,7 +804,9 @@
 
     /* header */
     .header__logo{
-      margin-left: 1rem;
+      // 411 )  8 / 
+      // margin-left: 1rem;
+      margin-left: 3.9%;
       height: 3rem;
     }
     .search{
@@ -833,7 +837,11 @@
       .likes__panel{
         width: inherit;
         .likes__link{
-          padding: 1.5rem 1rem;
+          // padding: 1.5rem 1rem;
+          justify-content: center;
+          .likes__fig{
+            margin-right: 0;
+          }
           .likes__data{
             display: none;
           }

@@ -23,6 +23,7 @@ import * as recipeView from "./views/recipeView";
 import * as listView from "./views/listView";
 import * as likesView from "./views/likesView";
 import { elements, renderLoader, clearLoader } from "./views/base";
+import * as touchView from "./views/touchScreenView";
 
 /*
  *** Global state of the app
@@ -33,6 +34,16 @@ import { elements, renderLoader, clearLoader } from "./views/base";
  */
 const state = {};
 window.state = state; // test 목적으로 global scope 에 공개
+
+// touch screen 여부 판단 test function
+const is_touch_device = () => {
+  try {
+    document.createEvent("TouchEvent");
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
 
 /* *******************
  *  Search Controller
@@ -273,6 +284,11 @@ window.addEventListener("load", () => {
     listView.renderItem(item);
   });
   listView.toggleShopBtn(state.list.items.length);
+
+  // touch screen 영역
+  if (touchView.is_touch_device()) {
+    touchView.test();
+  }
 });
 
 // Recipe 의 + - 버튼 event
