@@ -12,7 +12,8 @@
 // console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and
 //              ${searchView.multiply(3, 5)}. ${str}}`);
 
-import 'normalize.css';
+// npm package normalize.css 주입하는 법 (style-loader, css-loader 필요함 / webpack.config.js 도 수정 해야함)
+import "normalize.css";
 import Search from "./models/Search";
 import Recipe from "./models/Recipe";
 import List from "./models/List";
