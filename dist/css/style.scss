@@ -1,6 +1,3 @@
-// @import "../../node_modules/normalize.css/normalize.css";
-// normalize.css import
-
 * {
     margin: 0;
     padding: 0;
@@ -660,7 +657,7 @@
   ##Screen = 1025px에서 1280px 사이
   */
   
-  @media (min-width: 1025px) {
+  @media only screen and (min-width: 1025px) {
   
     //CSS
     .recipe__info-buttons{
@@ -681,7 +678,7 @@
   ##Screen = 768px에서 1024px 사이
   */
   
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
   
     //CSS
     .container{
@@ -700,12 +697,12 @@
   }
 
 
-  @media (min-width: 961px) {
+  @media only screen and (min-width: 961px) {
     .shopping{
       display: flex;
     }
   }
-  @media (max-width: 961px) {
+  @media only screen and (max-width: 961px) {
     .container{
       margin: 0;
       border-radius: 0;
@@ -720,7 +717,7 @@
   ##Device = 태블릿, 아이패드(가로)
   ##Screen = 768px에서 1024px 사이
   */
-  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
+  @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
   
   /*
   ##Device = Low Resolution Tablets, Mobiles (Landscape)
@@ -729,7 +726,7 @@
   ##Screen = 481px에서 767px 사이
   */
   
-  @media (min-width: 481px) and (max-width: 767px) {
+  @media only screen and (min-width: 481px) and (max-width: 767px) {
   
     //CSS
     .container{
@@ -754,12 +751,57 @@
   ##Screen = 320px에서 479px 사이
   */
   
-  @media (max-width: 480px) {
+  @media only screen and (max-width: 480px) {
   
     //CSS
+    
     .container{
       grid-template-columns: 1fr;
+
+      /* header */
+      .header__logo{
+        margin-left: 1rem;
+        height: 3rem;
+      }
+      .search{
+        margin-left: 1rem;
+        padding-left: 2rem;
+        input{
+          width: 80%;
+        }
+        button{
+          padding: 1.3rem 2rem;
+          svg{
+            margin-right: 0;
+          }
+          span{
+            display: none;
+          }
+        }
+      }
+      .likes{
+        min-width:0;
+        .likes__field{
+          padding: 0 3rem;
+          .likes__icon{
+            height: 3rem;
+            width: 3rem;
+          }
+        }
+        .likes__panel{
+          width: inherit;
+          .likes__link{
+            padding: 1.5rem 1.5rem;
+            .likes__data{
+              display: none;
+            }
+          }
+        }
+      }
     }
+      
+
+    /* content */
     .results,
     .shopping{
       display: none;

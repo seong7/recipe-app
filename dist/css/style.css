@@ -886,7 +886,7 @@ body {
   ##Device = 랩탑, 데스크탑
   ##Screen = 1025px에서 1280px 사이
   */
-@media (min-width: 1025px) {
+@media only screen and (min-width: 1025px) {
   .recipe__info-buttons {
     visibility: hidden;
   }
@@ -904,7 +904,7 @@ body {
   ##Device = 태블릿, 아이패드(세로),
   ##Screen = 768px에서 1024px 사이
   */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   .container {
     -ms-grid-columns: 1.3fr 3fr;
         grid-template-columns: 1.3fr 3fr;
@@ -921,7 +921,7 @@ body {
   }
 }
 
-@media (min-width: 961px) {
+@media only screen and (min-width: 961px) {
   .shopping {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -929,7 +929,7 @@ body {
   }
 }
 
-@media (max-width: 961px) {
+@media only screen and (max-width: 961px) {
   .container {
     margin: 0;
     border-radius: 0;
@@ -948,7 +948,7 @@ body {
   ##Device = 저해상도 태블릿, 모바일(가로)
   ##Screen = 481px에서 767px 사이
   */
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (min-width: 481px) and (max-width: 767px) {
   .container {
     -ms-grid-columns: 1.3fr 3fr;
         grid-template-columns: 1.3fr 3fr;
@@ -971,11 +971,52 @@ body {
   ##Device = 대부분의 스마트폰 모바일 기기(세로)
   ##Screen = 320px에서 479px 사이
   */
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
   .container {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
+    /* header */
   }
+  .container .header__logo {
+    margin-left: 1rem;
+    height: 3rem;
+  }
+  .container .search {
+    margin-left: 1rem;
+    padding-left: 2rem;
+  }
+  .container .search input {
+    width: 80%;
+  }
+  .container .search button {
+    padding: 1.3rem 2rem;
+  }
+  .container .search button svg {
+    margin-right: 0;
+  }
+  .container .search button span {
+    display: none;
+  }
+  .container .likes {
+    min-width: 0;
+  }
+  .container .likes .likes__field {
+    padding: 0 3rem;
+  }
+  .container .likes .likes__field .likes__icon {
+    height: 3rem;
+    width: 3rem;
+  }
+  .container .likes .likes__panel {
+    width: inherit;
+  }
+  .container .likes .likes__panel .likes__link {
+    padding: 1.5rem 1.5rem;
+  }
+  .container .likes .likes__panel .likes__link .likes__data {
+    display: none;
+  }
+  /* content */
   .results,
   .shopping {
     display: none;
