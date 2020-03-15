@@ -274,13 +274,16 @@
     height: 100%;
     transition: all 0.3s;
   }
-  .likes__field:hover {
-    background-color: #f2efee !important;
-  }
-  .likes__panel:hover,
-  .likes__field:hover + .likes__panel {
-    visibility: visible !important;
-    opacity: 1 !important;
+  @media (hover: hover) and (pointer: fine) {
+
+    .likes__field:hover {
+      background-color: #f2efee !important;
+    }
+    .likes__panel:hover,
+    .likes__field:hover + .likes__panel {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
   }
   .likes__icon {
     fill: #f59a83;
@@ -811,7 +814,7 @@
       button{
         padding: 1.3rem 2rem;
         svg{
-          margin-right: 0;
+          margin-right: 0 !important;
         }
         span{
           display: none;
