@@ -732,6 +732,43 @@
     .container{
       grid-template-columns: 1.3fr 3fr;
       height: 100%;
+      /* header */
+      .header__logo{
+        margin-left: 4rem;
+        height: 4.5rem;
+      }
+      .search{
+        margin-left: 1rem;
+        padding-left: 2rem;
+        input{
+          width: 30rem;
+        }
+        button{
+          padding: 1.3rem 2rem;
+          svg{
+            margin-right: 0;
+          }
+        }
+      }
+      .likes{
+        min-width:0;
+        .likes__field{
+          padding: 0 3rem;
+          .likes__icon{
+            height: 3.75rem;
+            width: 3.75rem;
+          }
+        }
+        .likes__panel{
+          width: inherit;
+          .likes__link{
+            padding: 1.5rem 1rem;
+            .likes__data{
+              display: none;
+            }
+          }
+        }
+      }
     }
     .shopping{
       display: none;
@@ -756,63 +793,90 @@
     //CSS
     
     .container{
-      grid-template-columns: 1fr;
+      // grid-template-columns: 1fr 10fr;
+      grid-template-columns: 0.5fr 3fr;
+    }
 
-      /* header */
-      .header__logo{
-        margin-left: 1rem;
-        height: 3rem;
+    /* header */
+    .header__logo{
+      margin-left: 1rem;
+      height: 3rem;
+    }
+    .search{
+      margin-left: 1rem;
+      padding-left: 2rem;
+      input{
+        width: 80%;
       }
-      .search{
-        margin-left: 1rem;
-        padding-left: 2rem;
-        input{
-          width: 80%;
+      button{
+        padding: 1.3rem 2rem;
+        svg{
+          margin-right: 0;
         }
-        button{
-          padding: 1.3rem 2rem;
-          svg{
-            margin-right: 0;
-          }
-          span{
+        span{
+          display: none;
+        }
+      }
+    }
+    .likes{
+      min-width:5%;
+      .likes__field{
+        padding: 0 3rem;
+        .likes__icon{
+          height: 3rem;
+          width: 3rem;
+        }
+      }
+      .likes__panel{
+        width: inherit;
+        .likes__link{
+          padding: 1.5rem 1rem;
+          .likes__data{
             display: none;
-          }
-        }
-      }
-      .likes{
-        min-width:0;
-        .likes__field{
-          padding: 0 3rem;
-          .likes__icon{
-            height: 3rem;
-            width: 3rem;
-          }
-        }
-        .likes__panel{
-          width: inherit;
-          .likes__link{
-            padding: 1.5rem 1.5rem;
-            .likes__data{
-              display: none;
-            }
           }
         }
       }
     }
       
 
-    /* content */
-    .results,
+    /* contents */
+    .results{
+      // display: none;
+      min-width: 7.5rem;
+      .results__link {
+        padding: 0.5rem;
+      }
+      .results__data{
+        display: none;
+      }
+      .results__pages{
+        padding: 0 0rem;
+        flex-direction: column;
+        display: flex;
+        .btn-inline{
+          flex-direction: row;
+          margin-bottom: 1.5rem;
+        }
+      }
+    }
     .shopping{
       display: none;
     }
     .recipe{
       width: 100%;
-    }
-    .recipe__info-buttons {
-      visibility: visible;
-      opacity: 1;
-      transform: translateY(0);
+      .recipe__info:not(:last-child) {
+        margin-right: 0;
+      }
+      .recipe__details{
+        padding-left: 10rem;
+        flex-direction: column;
+        align-items: baseline;
+        .recipe__info-buttons {
+          visibility: visible;
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     }
   
   }
