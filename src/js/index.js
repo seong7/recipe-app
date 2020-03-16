@@ -1,16 +1,30 @@
 // // import path 에는 파일의 확장자(.js)를 입력하지 않는다.
+/* import 문 사용법 
 
-// import str from './models/Search';  // default export 로부터 imoprt : 변수 명 아무거나
+  1) unnamed export 로부터 import
 
-// import { add as a, multiply as m, ID } from './views/searchView'; // named export 로부터 import 방법 1
-//                                                                         // export 문과 동일한 변수명 사용
-//             // as : 현재 파일에서 사용할 변수명으로 이름 변경
-// console.log(`Using imported functions! ${a(ID, 2)} and ${m(3, 5)}. ${str}}`);
+    - import str from './models/Search'; 
+      : default export (export Fn 이 하나 뿐일 때) 로부터 import
+        * 변수 명 아무거나 사용 가능
 
-// import * as searchView from './views/searchView';   // named export 로부터 import 방법 2
-//                                                             // export 문을 모두 하나의 객체에 담아 받아 사용하기
-// console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and
-//              ${searchView.multiply(3, 5)}. ${str}}`);
+    - import { limitRecipeTitle } from "./searchView";
+      : 여러 export Fn 중 특정 Fn 하나만 import 할 때는 {} 사용
+
+
+  2) named export 로부터 import
+
+    - import { add as a, multiply as m, ID } from './views/searchView';
+      : named export 로부터 import 방법 1
+        * export 문과 동일한 변수명 사용
+        * as : 현재 파일에서 사용할 변수명으로 이름 변경
+        console.log(`Using imported functions! ${a(ID, 2)} and ${m(3, 5)}. ${str}}`);
+
+    - import * as searchView from './views/searchView';
+      : named export 로부터 import 방법 2
+        * export 문을 모두 하나의 객체에 담아 받아 사용하기
+          console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and
+          ${searchView.multiply(3, 5)}. ${str}}`);                                                    
+*/
 
 // npm package normalize.css 주입하는 법 (style-loader, css-loader 필요함 / webpack.config.js 도 수정 해야함)
 import "normalize.css";
@@ -88,6 +102,7 @@ const controlSearch = async () => {
 elements.searchForm.addEventListener("submit", (e) => {
   e.preventDefault(); // default event delegation 을 막음
   controlSearch();
+  searchView.showResults();
 });
 
 // 검색결과 pagination 버튼 click event
@@ -149,7 +164,7 @@ const controlRecipe = async () => {
   }
 
   // touch screen 일 때 좋아요 panel 없애기
-  if(touch.is_touch_device()){
+  if (touch.is_touch_device()) {
     likesView.hideLikePannel();
   }
 };
@@ -291,17 +306,20 @@ window.addEventListener("load", () => {
   listView.toggleShopBtn(state.list.items.length);
 
   // touch screen 인지 판단하여 hover class 제거 후 touch 이벤트 추가
-  if(touch.is_touch_device()){
+  if (touch.is_touch_device()) {
     // Hover 지정한 class 제거
     elements.likesMenu.classList.remove("likes__hover");
-    
+
     elements.likesMenu.addEventListener("touchend", (e) => {
       e.preventDefault();
-      if(state.likes.likes.length){
-        likesView.toggleLikePannel(elements.likesPanel.style.visibility !== "visible");
+      if (state.likes.likes.length) {
+        likesView.toggleLikePannel(elements.likesPanel.style.visibility === "visible");
       }
     });
   }
+
+  elements.searchRes.style.display = "block";
+  console.log(elements.searchRes.style.display);
 });
 
 // Recipe 의 + - 버튼 event
@@ -364,6 +382,16 @@ elements.shoppingCopy.addEventListener("click", () => {
   alert("복사되었습니다.");
 });
 
+window.addEventListener("click", (e) => {
+  // e.preventDefault(); // window 객체에 add 하므로 window 내 모든 click 이벤트 삭제 해버림
+
+  const btn = e.target.closest(".results__toggle");
+  // elements.searchToggle  는 base.js 에서 선언하더라도 최초에 null 이므로 사용 불가
+  if (btn) {
+    console.log(elements.searchRes.style.display);
+    searchView.toggleResults(elements.searchRes.style.display === "block");
+  }
+});
 
 // const l = newList();
 // window.l = new List();

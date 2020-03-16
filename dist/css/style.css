@@ -410,6 +410,8 @@ body {
 .results {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#ffe5d4), to(#fff4ef));
   background-image: linear-gradient(to bottom, #ffe5d4, #fff4ef);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .results,
@@ -538,6 +540,7 @@ body {
 }
 
 .recipe {
+  position: relative;
   background-color: #f9f5f3;
   border-top: 1px solid #fff;
 }
@@ -595,14 +598,19 @@ body {
   background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
 }
 
-.sides__btns {
-  margin-top: 5rem;
-  padding: 0rem 3rem;
-}
-
 .sides__btns button {
+  position: absolute;
   height: 4.5rem;
   width: 4.5rem;
+  top: 1rem;
+}
+
+.sides__btns .results__toggle {
+  left: 1rem;
+}
+
+.sides__btns .shopping__toggle {
+  right: 1rem;
 }
 
 .recipe__details {
@@ -612,7 +620,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 5rem 3rem 3rem 3rem;
+  padding: 8rem 3rem 3rem 3rem;
 }
 
 .recipe__info {

@@ -45,11 +45,11 @@ export const blinkLikePannel = () => {
 };
 
 export const toggleLikePannel = (isOn) => {
-  elements.likesPanel.style.opacity = isOn ? 1 : 0;
-  elements.likesPanel.style.visibility = isOn ? "visible" : "hidden";
-}
+  elements.likesPanel.style.opacity = isOn ? 0 : 1;
+  elements.likesPanel.style.visibility = isOn ? "hidden" : "visible";
+};
 
 export const hideLikePannel = () => {
   elements.likesPanel.style.opacity = 0;
   elements.likesPanel.style.visibility = "hidden";
-}
+};

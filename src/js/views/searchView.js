@@ -4,6 +4,7 @@
 // export const ID = 23;
 
 import { elements } from "./base";
+import { is_touch_device } from "./touchScreenView";
 
 export const getInput = () => elements.searchInput.value; // 한줄짜리 arrow fn : 자동으로 처리된 값을 return 해줌
 
@@ -128,4 +129,22 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
 
   // render page 버튼
   renderButtons(page, recipes.length, resPerPage);
+};
+
+// 검색 결과 창 toggle
+export const toggleResults = (isVisible) => {
+  elements.searchRes.style.display = isVisible ? "none" : "block";
+  elements.container.style.gridTemplateColumns = isVisible
+    ? "1fr"
+    : is_touch_device()
+    ? "0.5fr 3fr"
+    : "1.1fr 2fr 1.1fr";
+};
+
+// 검색 결과 창 show
+export const showResults = () => {
+  elements.searchRes.style.display = "block";
+  elements.container.style.gridTemplateColumns = is_touch_device()
+    ? "0.5fr 3fr"
+    : "1.1fr 2fr 1.1fr";
 };
