@@ -200,6 +200,12 @@ body {
 
 .shopping__btn {
   min-width: 178.3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .shopping__clear {
@@ -392,6 +398,7 @@ body {
   background-color: #fefaf8;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
+  overflow: hidden;
   -webkit-box-shadow: 0 0.8rem 5rem 2rem rgba(101, 90, 86, 0.1);
           box-shadow: 0 0.8rem 5rem 2rem rgba(101, 90, 86, 0.1);
   visibility: hidden;
@@ -588,6 +595,16 @@ body {
   background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
 }
 
+.sides__btns {
+  margin-top: 5rem;
+  padding: 0rem 3rem;
+}
+
+.sides__btns button {
+  height: 4.5rem;
+  width: 4.5rem;
+}
+
 .recipe__details {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -595,7 +612,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 8rem 3rem 3rem 3rem;
+  padding: 5rem 3rem 3rem 3rem;
 }
 
 .recipe__info {

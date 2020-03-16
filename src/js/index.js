@@ -141,7 +141,7 @@ const controlRecipe = async () => {
 
       // Render result on UI
       clearLoader();
-      recipeView.renderRecipe(state.recipe, state.likes.isLiked(rId));
+      recipeView.renderRecipe(state.recipe, state.likes.isLiked(rId), touch.is_touch_device());
     } catch (error) {
       // console.log(error);
       alert("문제가 발생했습니다. 다시 시도해주세요.");

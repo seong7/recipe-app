@@ -169,6 +169,8 @@
   }
   .shopping__btn{
     min-width: 178.3px;
+    display: flex;
+    justify-content: center;
   }
   
   .shopping__clear {
@@ -299,6 +301,7 @@
     background-color: #fefaf8;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
+    overflow: hidden;
     box-shadow: 0 0.8rem 5rem 2rem rgba(101, 90, 86, 0.1);
     visibility: hidden;
     opacity: 0;
@@ -451,10 +454,18 @@
     padding: 1.3rem 2rem;
     background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
   }
+  .sides__btns{
+    margin-top: 5rem;
+    padding: 0rem 3rem;
+    button{
+      height: 4.5rem;
+      width: 4.5rem;
+    }
+  }
   .recipe__details {
     display: flex;
     align-items: center;
-    padding: 8rem 3rem 3rem 3rem;
+    padding: 5rem 3rem 3rem 3rem;
   }
   .recipe__info {
     font-size: 1.5rem;
