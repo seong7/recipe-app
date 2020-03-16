@@ -385,17 +385,24 @@ body {
 .likes__panel {
   position: absolute;
   right: 0;
-  top: 10rem;
+  top: 9.9rem;
   z-index: 10;
   padding: 2rem 0;
   width: 34rem;
-  background-color: #fff;
+  background-color: #fefaf8;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
   -webkit-box-shadow: 0 0.8rem 5rem 2rem rgba(101, 90, 86, 0.1);
           box-shadow: 0 0.8rem 5rem 2rem rgba(101, 90, 86, 0.1);
   visibility: hidden;
   opacity: 0;
   -webkit-transition: all 0.5s 0.2s;
   transition: all 0.5s 0.2s;
+}
+
+.results {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffe5d4), to(#fff4ef));
+  background-image: linear-gradient(to bottom, #ffe5d4, #fff4ef);
 }
 
 .results,
@@ -480,7 +487,7 @@ body {
 .results__name,
 .likes__name {
   font-size: 1.3rem;
-  color: #f59a83;
+  color: #ff6239;
   text-transform: uppercase;
   font-weight: 600;
   margin-bottom: 0.3rem;
@@ -509,6 +516,7 @@ body {
 
 .results__btn--prev,
 .likes__btn--prev {
+  border: 1px solid #ffd9c0;
   float: left;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -518,6 +526,7 @@ body {
 
 .results__btn--next,
 .likes__btn--next {
+  border: 1px solid #ffe5d4;
   float: right;
 }
 
@@ -756,6 +765,7 @@ body {
 }
 
 .shopping {
+  background: #fefaf8;
   padding: 3rem 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -824,7 +834,6 @@ body {
   border: 1px solid #f2efee;
   border-radius: 3px;
   margin-right: 2rem;
-  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -841,6 +850,7 @@ body {
   border: none;
   width: 3.7rem;
   border-radius: 3px;
+  background-color: inherit;
 }
 
 .shopping__count input:focus {
@@ -1082,6 +1092,9 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .results .results__pages .btn-inline {
     -webkit-box-orient: horizontal;
@@ -1089,6 +1102,10 @@ body {
         -ms-flex-direction: row;
             flex-direction: row;
     margin-bottom: 1.5rem;
+    width: 50%;
+  }
+  .results .results__pages .btn-inline span {
+    display: none;
   }
   .shopping {
     display: none;
