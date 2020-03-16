@@ -43,3 +43,13 @@ export const blinkLikePannel = () => {
 
   //  callback: (...args: any[]) => void, ms: number, ...args: any[]
 };
+
+export const toggleLikePannel = (isOn) => {
+  elements.likesPanel.style.opacity = isOn ? 0 : 1;
+  elements.likesPanel.style.visibility = isOn ? "hidden" : "visible";
+};
+
+export const hideLikePannel = () => {
+  elements.likesPanel.style.opacity = 0;
+  elements.likesPanel.style.visibility = "hidden";
+};

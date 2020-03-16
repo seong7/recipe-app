@@ -51,7 +51,8 @@ export const clearRecipe = () => {
   elements.recipe.innerHTML = "";
 };
 
-export const renderRecipe = (recipe, isLiked) => {
+export const renderRecipe = (recipe, isLiked, _isTouchScreen) => {
+  let isTouchScreen = _isTouchScreen;
   const markup = `
     <figure class="recipe__fig">
         <img src="${recipe.img}" alt="${recipe.title}" class="recipe__img">
@@ -59,6 +60,12 @@ export const renderRecipe = (recipe, isLiked) => {
             <span>${recipe.title}</span>
         </h1>
     </figure>
+    <div class="sides__btns">
+        <button class="results__toggle">
+            results
+        </button>
+        ${isTouchScreen ? "<button class='shopping__toggle'> shoppingList </button>" : ""}
+    </div>
     <div class="recipe__details">
         <div class="recipe__info">
             <svg class="recipe__info-icon">

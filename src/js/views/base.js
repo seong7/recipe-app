@@ -1,9 +1,12 @@
 export const elements = {
+  container: document.querySelector(".container"),
   searchForm: document.querySelector(".search"),
   searchInput: document.querySelector(".search__field"),
   searchRes: document.querySelector(".results"),
   searchResList: document.querySelector(".results__list"),
   searchResPages: document.querySelector(".results__pages"),
+  // searchToggle: document.querySelector(".results__toggle"),    // 두 버튼은 최초에 render 되지 않아 선택해도 null 임
+  // shoppingToggle: document.querySelector(".shopping__toggle"),
   recipe: document.querySelector(".recipe"),
   shopping: document.querySelector(".shopping__list"),
   likesMenu: document.querySelector(".likes__field"),
