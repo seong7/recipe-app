@@ -278,9 +278,11 @@
     background-color: #f2efee !important;
   }
   .likes__panel:hover,
-  .likes__field:hover + .likes__panel {
-    visibility: visible !important;
-    opacity: 1 !important;
+  .likes__hover:hover + .likes__panel {
+    // visibility: visible !important;
+    // opacity: 1 !important;
+    visibility: visible;
+    opacity: 1;
   }
   .likes__icon {
     fill: #f59a83;
@@ -877,8 +879,9 @@
         .btn-inline{
           flex-direction: row;
           margin-bottom: 1.5rem;
-          width: 50%;
-          span{
+          width: 60%;
+          justify-content: center;
+          svg{
             display: none;
           }
         }

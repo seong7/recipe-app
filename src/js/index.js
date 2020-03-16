@@ -23,7 +23,7 @@ import * as recipeView from "./views/recipeView";
 import * as listView from "./views/listView";
 import * as likesView from "./views/likesView";
 import { elements, renderLoader, clearLoader } from "./views/base";
-import * as touchView from "./views/touchScreenView";
+import * as touch from "./views/touchScreenView";
 
 /*
  *** Global state of the app
@@ -36,14 +36,14 @@ const state = {};
 window.state = state; // test 목적으로 global scope 에 공개
 
 // touch screen 여부 판단 test function
-const is_touch_device = () => {
-  try {
-    document.createEvent("TouchEvent");
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
+// const is_touch_device = () => {
+//   try {
+//     document.createEvent("TouchEvent");
+//     return true;
+//   } catch (e) {
+//     return false;
+//   }
+// };
 
 /* *******************
  *  Search Controller
@@ -146,6 +146,11 @@ const controlRecipe = async () => {
       // console.log(error);
       alert("문제가 발생했습니다. 다시 시도해주세요.");
     }
+  }
+
+  // touch screen 일 때 좋아요 panel 없애기
+  if(touch.is_touch_device()){
+    likesView.hideLikePannel();
   }
 };
 
@@ -285,9 +290,17 @@ window.addEventListener("load", () => {
   });
   listView.toggleShopBtn(state.list.items.length);
 
-  // touch screen 영역
-  if (touchView.is_touch_device()) {
-    touchView.test();
+  // touch screen 인지 판단하여 hover class 제거 후 touch 이벤트 추가
+  if(touch.is_touch_device()){
+    // Hover 지정한 class 제거
+    elements.likesMenu.classList.remove("likes__hover");
+    
+    elements.likesMenu.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      if(state.likes.likes.length){
+        likesView.toggleLikePannel(elements.likesPanel.style.visibility !== "visible");
+      }
+    });
   }
 });
 
@@ -350,6 +363,7 @@ elements.shoppingCopy.addEventListener("click", () => {
 
   alert("복사되었습니다.");
 });
+
 
 // const l = newList();
 // window.l = new List();

@@ -371,9 +371,9 @@ body {
 }
 
 .likes__panel:hover,
-.likes__field:hover + .likes__panel {
-  visibility: visible !important;
-  opacity: 1 !important;
+.likes__hover:hover + .likes__panel {
+  visibility: visible;
+  opacity: 1;
 }
 
 .likes__icon {
@@ -1102,9 +1102,12 @@ body {
         -ms-flex-direction: row;
             flex-direction: row;
     margin-bottom: 1.5rem;
-    width: 50%;
+    width: 60%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
-  .results .results__pages .btn-inline span {
+  .results .results__pages .btn-inline svg {
     display: none;
   }
   .shopping {
