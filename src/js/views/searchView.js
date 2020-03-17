@@ -135,16 +135,24 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
 export const toggleResults = (isVisible) => {
   elements.searchRes.style.display = isVisible ? "none" : "block";
   elements.container.style.gridTemplateColumns = isVisible
-    ? "1fr"
-    : is_touch_device()
-    ? "0.5fr 3fr"
-    : "1.1fr 2fr 1.1fr";
+    ? // ? window.innerWidth < 961
+      //   ? "1fr"
+      //   : "3.1fr 1.1fr"
+      // : is_touch_device()
+      // ? "0.5fr 3fr"
+      // : "";
+      "1fr"
+    : "0.5fr 3fr";
 };
 
 // 검색 결과 창 show
 export const showResults = () => {
+  console.log(window.innerWidth);
   elements.searchRes.style.display = "block";
   elements.container.style.gridTemplateColumns = is_touch_device()
     ? "0.5fr 3fr"
-    : "1.1fr 2fr 1.1fr";
+    : // : window.innerWidth <= 767
+      // ? "1.3fr 3fr"
+      // : "1.1fr 2fr 1.1fr";
+      "";
 };

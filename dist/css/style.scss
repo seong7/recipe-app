@@ -42,14 +42,6 @@ body {
   grid-template-columns: 1.1fr 2fr 1.1fr;
   grid-template-areas: "head head head" "list recipe shopping";
 }
-@media only screen and (max-width: 1200px) {
-  .container {
-    // width: 100%;
-    // height: 100%;
-    // margin-top: 0;
-    // border-radius: 0;
-  }
-}
 
 .btn,
 .btn-small,
@@ -470,6 +462,13 @@ body {
     right: 1rem;
   }
 }
+// 모바일 세로, 가로 사이즈에서만 표시되도록 설정
+@media only screen and (min-width: 768px) {
+  .results__toggle,
+  .shopping__toggle {
+    visibility: hidden;
+  }
+}
 .recipe__details {
   display: flex;
   align-items: center;
@@ -722,12 +721,8 @@ body {
   }
 }
 
-@media only screen and (min-width: 961px) {
-  .shopping {
-    display: flex;
-  }
-}
-@media only screen and (max-width: 961px) {
+// @media only screen and (max-width: 961px) {
+@media only screen and (max-width: 1024px) {
   .container {
     margin: 0;
     border-radius: 0;

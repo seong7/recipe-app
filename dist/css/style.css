@@ -613,6 +613,13 @@ body {
   right: 1rem;
 }
 
+@media only screen and (min-width: 768px) {
+  .results__toggle,
+  .shopping__toggle {
+    visibility: hidden;
+  }
+}
+
 .recipe__details {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -956,15 +963,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 961px) {
-  .shopping {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-}
-
-@media only screen and (max-width: 961px) {
+@media only screen and (max-width: 1024px) {
   .container {
     margin: 0;
     border-radius: 0;
