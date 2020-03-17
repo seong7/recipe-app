@@ -382,7 +382,7 @@ elements.shoppingCopy.addEventListener("click", () => {
   alert("복사되었습니다.");
 });
 
-window.addEventListener("click", (e) => {
+window.addEventListener("touchend", (e) => {
   // e.preventDefault(); // window 객체에 add 하므로 window 내 모든 click 이벤트 삭제 해버림
 
   const btn = e.target.closest(".results__toggle");

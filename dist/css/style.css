@@ -599,11 +599,11 @@ body {
 }
 
 .sides__btns button {
-  position: absolute;
+  position: fixed;
   cursor: pointer;
   height: 4.5rem;
   width: 4.5rem;
-  top: 1rem;
+  top: 11rem;
   border: none;
   border-radius: 1rem;
   background-color: #ffe5d4;
@@ -614,12 +614,22 @@ body {
 }
 
 .sides__btns .results__toggle {
-  left: 1rem;
+  left: 8rem;
   -webkit-transition: all 0.5s 0.2s;
   transition: all 0.5s 0.2s;
+  outline: none;
+}
+
+.sides__btns .results__toggle .fa-bars::before {
+  content: "\f0c9";
+}
+
+.sides__btns .results__toggle .fa-angle-double-left::before {
+  content: "\f100";
 }
 
 .sides__btns .shopping__toggle {
+  outline: none;
   right: 1rem;
 }
 

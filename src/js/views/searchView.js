@@ -135,7 +135,7 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
 export const toggleResults = (isVisible) => {
   const searchToggle = document.querySelector(".results__toggle");
   console.log(searchToggle);
-  // searchToggle.innerHTML = "";
+  searchToggle.innerHTML = "";
   searchToggle.insertAdjacentHTML(
     "afterbegin",
     `<i class= ${isVisible ? "fas fa-angle-double-left" : "fas fa-bars"}></i>`,

@@ -450,11 +450,12 @@ body {
 }
 .sides__btns {
   button {
-    position: absolute;
+    // position: absolute;
+    position: fixed;
     cursor: pointer;
     height: 4.5rem;
     width: 4.5rem;
-    top: 1rem;
+    top: 11rem;
     border: none;
     border-radius: 1rem;
     background-color: rgb(255, 229, 212);
@@ -463,10 +464,18 @@ body {
     box-shadow: 0 0rem 0.5rem 0.4rem rgba(59, 53, 53, 0.09);
   }
   .results__toggle {
-    left: 1rem;
+    left: 8rem;
     transition: all 0.5s 0.2s; // name | duration | delay
+    outline: none;
+    .fa-bars::before {
+      content: "\f0c9";
+    }
+    .fa-angle-double-left::before {
+      content: "\f100";
+    }
   }
   .shopping__toggle {
+    outline: none;
     right: 1rem;
   }
 }

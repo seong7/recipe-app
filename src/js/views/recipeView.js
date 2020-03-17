@@ -63,7 +63,7 @@ export const renderRecipe = (recipe, isLiked, _isTouchScreen) => {
     <div class="sides__btns">
         ${
           isTouchScreen
-            ? "<button class='results__toggle'>  <!--<i class='fas fa-bars'></i>-->  <!--<i class='fas fa-angle-double-left'></i>-->  </button> <button class='shopping__toggle'>  <i class='fas fa-cart-arrow-down'></i>  </button>"
+            ? "<button class='results__toggle'>  <!--<i class='fas fa-bars'></i>-->  <i class='fas fa-angle-double-left'></i>  </button> <button class='shopping__toggle'>  <i class='fas fa-cart-arrow-down'></i>  </button>"
             : ""
         }
     </div>
