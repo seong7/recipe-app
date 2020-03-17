@@ -102,7 +102,7 @@ const controlSearch = async () => {
 elements.searchForm.addEventListener("submit", (e) => {
   e.preventDefault(); // default event delegation 을 막음
   controlSearch();
-  searchView.showResults();
+  if (touch.is_touch_device()) searchView.showResults();
 });
 
 // 검색결과 pagination 버튼 click event
@@ -319,7 +319,7 @@ window.addEventListener("load", () => {
   }
 
   elements.searchRes.style.display = "block";
-  console.log(elements.searchRes.style.display);
+  // console.log(elements.searchRes.style.display);
 });
 
 // Recipe 의 + - 버튼 event
@@ -388,7 +388,7 @@ window.addEventListener("click", (e) => {
   const btn = e.target.closest(".results__toggle");
   // elements.searchToggle  는 base.js 에서 선언하더라도 최초에 null 이므로 사용 불가
   if (btn) {
-    console.log(elements.searchRes.style.display);
+    // console.log(elements.searchRes.style.display);
     searchView.toggleResults(elements.searchRes.style.display === "block");
   }
 });

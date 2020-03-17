@@ -391,13 +391,13 @@ body {
 }
 .results__btn--prev,
 .likes__btn--prev {
-  border: 1px solid #ffd9c0;
+  border: 1px solid #ffc29a;
   float: left;
   flex-direction: row-reverse;
 }
 .results__btn--next,
 .likes__btn--next {
-  border: 1px solid #ffe5d4;
+  border: 1px solid #ffc29a;
   float: right;
 }
 
@@ -451,12 +451,20 @@ body {
 .sides__btns {
   button {
     position: absolute;
+    cursor: pointer;
     height: 4.5rem;
     width: 4.5rem;
     top: 1rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: rgb(255, 229, 212);
+    color: #f48982;
+    font-size: 2rem;
+    box-shadow: 0 0rem 0.5rem 0.4rem rgba(59, 53, 53, 0.09);
   }
   .results__toggle {
     left: 1rem;
+    transition: all 0.5s 0.2s; // name | duration | delay
   }
   .shopping__toggle {
     right: 1rem;
