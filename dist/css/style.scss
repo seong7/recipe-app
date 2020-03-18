@@ -467,6 +467,9 @@ body {
     left: 8rem;
     transition: all 0.5s 0.2s; // name | duration | delay
     outline: none;
+    .fa-bars, .fa-angle-double-left{
+      // color: red;
+    }
     .fa-bars::before {
       content: "\f0c9";
     }

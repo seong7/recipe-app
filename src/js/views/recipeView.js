@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { Fraction } from "fractional";
 import { elements } from "./base";
 
@@ -52,7 +53,7 @@ export const clearRecipe = () => {
 };
 
 export const renderRecipe = (recipe, isLiked, _isTouchScreen) => {
-  let isTouchScreen = _isTouchScreen;
+  const isTouchScreen = _isTouchScreen;
   const markup = `
     <figure class="recipe__fig">
         <img src="${recipe.img}" alt="${recipe.title}" class="recipe__img">
@@ -61,11 +62,11 @@ export const renderRecipe = (recipe, isLiked, _isTouchScreen) => {
         </h1>
     </figure>
     <div class="sides__btns">
-        ${
-          isTouchScreen
-            ? "<button class='results__toggle'>  <!--<i class='fas fa-bars'></i>-->  <i class='fas fa-angle-double-left'></i>  </button> <button class='shopping__toggle'>  <i class='fas fa-cart-arrow-down'></i>  </button>"
-            : ""
-        }
+    ${
+      isTouchScreen
+        ? "<button class='results__toggle'>  <!--<i class='fas fa-bars'></i>-->  <i class='fas fa-angle-double-left'></i>  </button> <button class='shopping__toggle'>  <i class='fas fa-cart-arrow-down'></i>  </button>"
+        : ""
+    }
     </div>
     <div class="recipe__details">
         <div class="recipe__info">

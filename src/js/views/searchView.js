@@ -10,6 +10,7 @@ export const getInput = () => elements.searchInput.value; // 한줄짜리 arrow 
 
 export const clearInput = () => {
   elements.searchInput.value = ""; // return 값을 만들지 않기 위해 function 한줄이지만 감싸줌
+  is_touch_device();
 };
 
 // 결과 지우기
@@ -135,11 +136,20 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
 export const toggleResults = (isVisible) => {
   const searchToggle = document.querySelector(".results__toggle");
   console.log(searchToggle);
+  const bars = document.createElement("i");
+  bars.classList.add("fas");
+  bars.classList.add("fa-bars");
+  const arrow = document.createElement("i");
+  arrow.classList.add("fas");
+  arrow.classList.add("fa-angle-double-left");
   searchToggle.innerHTML = "";
-  searchToggle.insertAdjacentHTML(
-    "afterbegin",
-    `<i class= ${isVisible ? "fas fa-angle-double-left" : "fas fa-bars"}></i>`,
-  );
+  searchToggle.appendChild(isVisible ? bars : arrow);
+
+  // searchToggle.insertAdjacentHTML(
+  //   "afterbegin",
+  //   isVisible ? bars : arrow,
+  // );
+  // searchToggle.innerHTML = `<i class= ${isVisible ? "fas fa-angle-double-left" : "fas fa-bars"}></i>`;
   elements.searchRes.style.display = isVisible ? "none" : "block";
   elements.container.style.gridTemplateColumns = isVisible ? "1fr" : "0.5fr 3fr";
 };
