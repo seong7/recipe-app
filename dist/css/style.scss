@@ -42,14 +42,6 @@ body {
   grid-template-columns: 1.1fr 2fr 1.1fr;
   grid-template-areas: "head head head" "list recipe shopping";
 }
-@media only screen and (max-width: 1200px) {
-  .container {
-    // width: 100%;
-    // height: 100%;
-    // margin-top: 0;
-    // border-radius: 0;
-  }
-}
 
 .btn,
 .btn-small,
@@ -399,13 +391,13 @@ body {
 }
 .results__btn--prev,
 .likes__btn--prev {
-  border: 1px solid #ffd9c0;
+  border: 1px solid #ffc29a;
   float: left;
   flex-direction: row-reverse;
 }
 .results__btn--next,
 .likes__btn--next {
-  border: 1px solid #ffe5d4;
+  border: 1px solid #ffc29a;
   float: right;
 }
 
@@ -458,16 +450,40 @@ body {
 }
 .sides__btns {
   button {
-    position: absolute;
+    // position: absolute;
+    position: fixed;
+    cursor: pointer;
     height: 4.5rem;
     width: 4.5rem;
-    top: 1rem;
+    top: 11rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: rgb(255, 229, 212);
+    color: #f48982;
+    font-size: 2rem;
+    box-shadow: 0 0rem 0.5rem 0.4rem rgba(59, 53, 53, 0.09);
   }
   .results__toggle {
-    left: 1rem;
+    left: 8rem;
+    transition: all 0.5s 0.2s; // name | duration | delay
+    outline: none;
+    .fa-bars::before {
+      content: "\f0c9";
+    }
+    .fa-angle-double-left::before {
+      content: "\f100";
+    }
   }
   .shopping__toggle {
+    outline: none;
     right: 1rem;
+  }
+}
+// 모바일 세로, 가로 사이즈에서만 표시되도록 설정
+@media only screen and (min-width: 768px) {
+  .results__toggle,
+  .shopping__toggle {
+    visibility: hidden;
   }
 }
 .recipe__details {
@@ -722,12 +738,8 @@ body {
   }
 }
 
-@media only screen and (min-width: 961px) {
-  .shopping {
-    display: flex;
-  }
-}
-@media only screen and (max-width: 961px) {
+// @media only screen and (max-width: 961px) {
+@media only screen and (max-width: 1024px) {
   .container {
     margin: 0;
     border-radius: 0;

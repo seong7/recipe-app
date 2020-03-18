@@ -133,18 +133,20 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
 
 // 검색 결과 창 toggle
 export const toggleResults = (isVisible) => {
+  const searchToggle = document.querySelector(".results__toggle");
+  console.log(searchToggle);
+  searchToggle.innerHTML = "";
+  searchToggle.insertAdjacentHTML(
+    "afterbegin",
+    `<i class= ${isVisible ? "fas fa-angle-double-left" : "fas fa-bars"}></i>`,
+  );
   elements.searchRes.style.display = isVisible ? "none" : "block";
-  elements.container.style.gridTemplateColumns = isVisible
-    ? "1fr"
-    : is_touch_device()
-    ? "0.5fr 3fr"
-    : "1.1fr 2fr 1.1fr";
+  elements.container.style.gridTemplateColumns = isVisible ? "1fr" : "0.5fr 3fr";
 };
 
 // 검색 결과 창 show
 export const showResults = () => {
+  // console.log(window.innerWidth);
   elements.searchRes.style.display = "block";
-  elements.container.style.gridTemplateColumns = is_touch_device()
-    ? "0.5fr 3fr"
-    : "1.1fr 2fr 1.1fr";
+  elements.container.style.gridTemplateColumns = "0.5fr 3fr";
 };

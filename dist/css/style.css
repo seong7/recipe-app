@@ -525,7 +525,7 @@ body {
 
 .results__btn--prev,
 .likes__btn--prev {
-  border: 1px solid #ffd9c0;
+  border: 1px solid #ffc29a;
   float: left;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -535,7 +535,7 @@ body {
 
 .results__btn--next,
 .likes__btn--next {
-  border: 1px solid #ffe5d4;
+  border: 1px solid #ffc29a;
   float: right;
 }
 
@@ -599,18 +599,45 @@ body {
 }
 
 .sides__btns button {
-  position: absolute;
+  position: fixed;
+  cursor: pointer;
   height: 4.5rem;
   width: 4.5rem;
-  top: 1rem;
+  top: 11rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #ffe5d4;
+  color: #f48982;
+  font-size: 2rem;
+  -webkit-box-shadow: 0 0rem 0.5rem 0.4rem rgba(59, 53, 53, 0.09);
+          box-shadow: 0 0rem 0.5rem 0.4rem rgba(59, 53, 53, 0.09);
 }
 
 .sides__btns .results__toggle {
-  left: 1rem;
+  left: 8rem;
+  -webkit-transition: all 0.5s 0.2s;
+  transition: all 0.5s 0.2s;
+  outline: none;
+}
+
+.sides__btns .results__toggle .fa-bars::before {
+  content: "\f0c9";
+}
+
+.sides__btns .results__toggle .fa-angle-double-left::before {
+  content: "\f100";
 }
 
 .sides__btns .shopping__toggle {
+  outline: none;
   right: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .results__toggle,
+  .shopping__toggle {
+    visibility: hidden;
+  }
 }
 
 .recipe__details {
@@ -956,15 +983,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 961px) {
-  .shopping {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-}
-
-@media only screen and (max-width: 961px) {
+@media only screen and (max-width: 1024px) {
   .container {
     margin: 0;
     border-radius: 0;
