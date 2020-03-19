@@ -40,7 +40,6 @@ body {
   margin: 4vw auto;
   background-color: #fff;
   border-radius: 6px;
-  overflow: hidden;
   -webkit-box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
           box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
   display: -ms-grid;
@@ -598,12 +597,19 @@ body {
   background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
 }
 
+.sides__btns {
+  position: absolute;
+  top: 1rem;
+  height: 100%;
+}
+
 .sides__btns button {
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10px;
   cursor: pointer;
   height: 4.5rem;
   width: 4.5rem;
-  top: 11rem;
   border: none;
   border-radius: 1rem;
   background-color: #ffe5d4;
@@ -611,26 +617,12 @@ body {
   font-size: 2rem;
   -webkit-box-shadow: 0 0rem 0.5rem 0.4rem rgba(59, 53, 53, 0.09);
           box-shadow: 0 0rem 0.5rem 0.4rem rgba(59, 53, 53, 0.09);
+  outline: none;
 }
 
 .sides__btns .results__toggle {
-  left: 8rem;
   -webkit-transition: all 0.5s 0.2s;
   transition: all 0.5s 0.2s;
-  outline: none;
-}
-
-.sides__btns .results__toggle .fa-bars::before {
-  content: "\f0c9";
-}
-
-.sides__btns .results__toggle .fa-angle-double-left::before {
-  content: "\f100";
-}
-
-.sides__btns .shopping__toggle {
-  outline: none;
-  right: 1rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -647,7 +639,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 8rem 3rem 3rem 3rem;
+  padding: 4rem 3rem 3rem 3rem;
 }
 
 .recipe__info {

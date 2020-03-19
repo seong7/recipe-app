@@ -135,21 +135,11 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
 // 검색 결과 창 toggle
 export const toggleResults = (isVisible) => {
   const searchToggle = document.querySelector(".results__toggle");
-  console.log(searchToggle);
-  const bars = document.createElement("i");
-  bars.classList.add("fas");
-  bars.classList.add("fa-bars");
-  const arrow = document.createElement("i");
-  arrow.classList.add("fas");
-  arrow.classList.add("fa-angle-double-left");
   searchToggle.innerHTML = "";
-  searchToggle.appendChild(isVisible ? bars : arrow);
+  const arrowIcon = "<i class='fas fa-angle-double-left'></i>";
+  const barsIcon = "<i class='fas fa-bars'></i>";
+  searchToggle.innerHTML = isVisible ? barsIcon : arrowIcon;
 
-  // searchToggle.insertAdjacentHTML(
-  //   "afterbegin",
-  //   isVisible ? bars : arrow,
-  // );
-  // searchToggle.innerHTML = `<i class= ${isVisible ? "fas fa-angle-double-left" : "fas fa-bars"}></i>`;
   elements.searchRes.style.display = isVisible ? "none" : "block";
   elements.container.style.gridTemplateColumns = isVisible ? "1fr" : "0.5fr 3fr";
 };

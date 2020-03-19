@@ -35,7 +35,7 @@ body {
   margin: 4vw auto;
   background-color: #fff;
   border-radius: 6px;
-  overflow: hidden;
+  // overflow: hidden;
   box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
   display: grid;
   grid-template-rows: 10rem minmax(100rem, auto);
@@ -448,38 +448,34 @@ body {
   padding: 1.3rem 2rem;
   background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
 }
+
+// 왼쪽 버튼과 오른쪽 버튼의 영역을 따로 줘야함
 .sides__btns {
+  position: absolute;
+  top: 1rem;
+  height: 100%;
   button {
     // position: absolute;
-    position: fixed;
+    // position: fixed;
+    position: sticky;
+    top: 10px;
     cursor: pointer;
     height: 4.5rem;
     width: 4.5rem;
-    top: 11rem;
     border: none;
     border-radius: 1rem;
     background-color: rgb(255, 229, 212);
     color: #f48982;
     font-size: 2rem;
     box-shadow: 0 0rem 0.5rem 0.4rem rgba(59, 53, 53, 0.09);
+    outline: none;
   }
   .results__toggle {
-    left: 8rem;
+    // left: 8rem;
     transition: all 0.5s 0.2s; // name | duration | delay
-    outline: none;
-    .fa-bars, .fa-angle-double-left{
-      // color: red;
-    }
-    .fa-bars::before {
-      content: "\f0c9";
-    }
-    .fa-angle-double-left::before {
-      content: "\f100";
-    }
   }
   .shopping__toggle {
-    outline: none;
-    right: 1rem;
+    // right: 1rem;
   }
 }
 // 모바일 세로, 가로 사이즈에서만 표시되도록 설정
@@ -492,7 +488,7 @@ body {
 .recipe__details {
   display: flex;
   align-items: center;
-  padding: 8rem 3rem 3rem 3rem;
+  padding: 4rem 3rem 3rem 3rem;
 }
 .recipe__info {
   font-size: 1.5rem;
