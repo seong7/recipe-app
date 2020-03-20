@@ -1,9 +1,9 @@
 // // import path 에는 파일의 확장자(.js)를 입력하지 않는다.
-/* import 문 사용법 
+/* import 문 사용법
 
   1) unnamed export 로부터 import
 
-    - import str from './models/Search'; 
+    - import str from './models/Search';
       : default export (export Fn 이 하나 뿐일 때) 로부터 import
         * 변수 명 아무거나 사용 가능
 
@@ -23,7 +23,7 @@
       : named export 로부터 import 방법 2
         * export 문을 모두 하나의 객체에 담아 받아 사용하기
           console.log(`Using imported functions! ${searchView.add(searchView.ID, 2)} and
-          ${searchView.multiply(3, 5)}. ${str}}`);                                                    
+          ${searchView.multiply(3, 5)}. ${str}}`);
 */
 
 // npm package normalize.css 주입하는 법 (style-loader, css-loader 필요함 / webpack.config.js 도 수정 해야함)

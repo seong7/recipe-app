@@ -37,8 +37,9 @@ export const blinkLikePannel = () => {
   elements.likesPanel.style.opacity = 1;
   elements.likesPanel.style.visibility = "visible";
   setTimeout(() => {
-    elements.likesPanel.style.opacity = 0;
-    elements.likesPanel.style.visibility = "hidden";
+    // 초기화
+    elements.likesPanel.style.opacity = "";
+    elements.likesPanel.style.visibility = "";
   }, 1000);
 
   //  callback: (...args: any[]) => void, ms: number, ...args: any[]
