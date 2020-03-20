@@ -539,7 +539,6 @@ body {
 }
 
 .recipe {
-  position: relative;
   background-color: #f9f5f3;
   border-top: 1px solid #fff;
 }
@@ -599,14 +598,15 @@ body {
 
 .sides__btns {
   position: absolute;
-  top: 1rem;
+  top: 11rem;
+  right: 1rem;
   height: 100%;
 }
 
 .sides__btns button {
   position: -webkit-sticky;
   position: sticky;
-  top: 10px;
+  top: 3rem;
   cursor: pointer;
   height: 4.5rem;
   width: 4.5rem;
@@ -621,6 +621,7 @@ body {
 }
 
 .sides__btns .results__toggle {
+  margin-right: 1rem;
   -webkit-transition: all 0.5s 0.2s;
   transition: all 0.5s 0.2s;
 }
@@ -639,7 +640,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 4rem 3rem 3rem 3rem;
+  padding: 8rem 3rem 3rem 3rem;
 }
 
 .recipe__info {
@@ -709,6 +710,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  z-index: 5;
 }
 
 .recipe__love:hover {

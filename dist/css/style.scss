@@ -402,7 +402,7 @@ body {
 }
 
 .recipe {
-  position: relative;
+  // position: relative;
   background-color: #f9f5f3;
   border-top: 1px solid #fff;
 }
@@ -449,16 +449,14 @@ body {
   background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
 }
 
-// 왼쪽 버튼과 오른쪽 버튼의 영역을 따로 줘야함
 .sides__btns {
   position: absolute;
-  top: 1rem;
+  top: 11rem;
+  right: 1rem;
   height: 100%;
   button {
-    // position: absolute;
-    // position: fixed;
     position: sticky;
-    top: 10px;
+    top: 3rem;
     cursor: pointer;
     height: 4.5rem;
     width: 4.5rem;
@@ -471,7 +469,7 @@ body {
     outline: none;
   }
   .results__toggle {
-    // left: 8rem;
+    margin-right: 1rem;
     transition: all 0.5s 0.2s; // name | duration | delay
   }
   .shopping__toggle {
@@ -488,7 +486,7 @@ body {
 .recipe__details {
   display: flex;
   align-items: center;
-  padding: 4rem 3rem 3rem 3rem;
+  padding: 8rem 3rem 3rem 3rem;
 }
 .recipe__info {
   font-size: 1.5rem;
@@ -534,6 +532,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 5;
 }
 .recipe__love:hover {
   transform: scale(1.07);
