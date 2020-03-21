@@ -831,6 +831,7 @@ body {
   .container {
     // grid-template-columns: 1fr 10fr;
     grid-template-columns: 0.5fr 3fr;
+    overflow: visible;
   }
 
   /* header */
