@@ -142,6 +142,7 @@ export const toggleResults = (isVisible) => {
 
   elements.searchRes.style.display = isVisible ? "none" : "block";
   elements.container.style.gridTemplateColumns = isVisible ? "1fr" : "0.5fr 3fr";
+  elements.shopping.style.gridColumn = isVisible ? 1 : "2/4";
 };
 
 // 검색 결과 창 show

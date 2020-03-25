@@ -8,7 +8,8 @@ export const elements = {
   // searchToggle: document.querySelector(".results__toggle"),    // 두 버튼은 최초에 render 되지 않아 선택해도 null 임
   // shoppingToggle: document.querySelector(".shopping__toggle"),
   recipe: document.querySelector(".recipe"),
-  shopping: document.querySelector(".shopping__list"),
+  shopping: document.querySelector(".shopping"),
+  shoppingList: document.querySelector(".shopping__list"),
   likesMenu: document.querySelector(".likes__field"),
   likesList: document.querySelector(".likes__list"),
   likesPanel: document.querySelector(".likes__panel"),

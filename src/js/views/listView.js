@@ -15,7 +15,7 @@ export const renderItem = (item) => {
         </button>
     </li>
     `;
-  elements.shopping.insertAdjacentHTML("beforeend", markup);
+  elements.shoppingList.insertAdjacentHTML("beforeend", markup);
 };
 
 export const deleteItem = (id) => {
@@ -28,7 +28,7 @@ export const deleteItem = (id) => {
 };
 
 export const clearItem = () => {
-  elements.shopping.innerHTML = "";
+  elements.shoppingList.innerHTML = "";
 };
 
 export const toggleShopBtn = (numList) => {

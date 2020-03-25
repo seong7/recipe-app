@@ -828,6 +828,7 @@ body {
 }
 
 .shopping__list {
+  margin-top: 3rem;
   list-style: none;
   max-height: 77rem;
   overflow-y: scroll;
@@ -977,9 +978,13 @@ body {
     grid-row: 2/4;
   }
   .shopping {
+    background-color: #f2efee;
     -ms-grid-column: 2;
     -ms-grid-column-span: 2;
     grid-column: 2/4;
+  }
+  .shopping .shopping__list {
+    overflow-y: none;
   }
   .shopping .shopping__item {
     -webkit-box-pack: center;
@@ -988,6 +993,17 @@ body {
   }
   .shopping .shopping__item .shopping__description {
     max-width: 20rem;
+  }
+  .shopping .shopping__item .shopping__delete {
+    background-color: #f2efee;
+    background-image: none;
+    right: 2rem;
+  }
+  .shopping .shopping__item p {
+    font-size: 1.8rem;
+  }
+  .shopping .shopping__item .shopping__count .shopping__count-value {
+    font-size: 1.8rem;
   }
   .recipe__info-buttons {
     visibility: visible;
@@ -1064,8 +1080,35 @@ body {
   .container .likes .likes__panel .likes__link .likes__data {
     display: none;
   }
+  .results {
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 2;
+    grid-row: 2/4;
+  }
   .shopping {
-    display: none;
+    background-color: #f2efee;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 2;
+    grid-column: 2/4;
+  }
+  .shopping .shopping__item {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .shopping .shopping__item .shopping__description {
+    max-width: 20rem;
+  }
+  .shopping .shopping__item .shopping__delete {
+    background-color: #f2efee;
+    background-image: none;
+    right: 2rem;
+  }
+  .shopping .shopping__item p {
+    font-size: 1.8rem;
+  }
+  .shopping .shopping__item .shopping__count .shopping__count-value {
+    font-size: 1.8rem;
   }
   .recipe__info-buttons {
     visibility: visible;
@@ -1169,8 +1212,35 @@ body {
   .results .results__pages .btn-inline svg {
     display: none;
   }
+  .results {
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 2;
+    grid-row: 2/4;
+  }
   .shopping {
-    display: none;
+    background-color: #f2efee;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 2;
+    grid-column: 2/4;
+  }
+  .shopping .shopping__item {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .shopping .shopping__item .shopping__description {
+    max-width: 20rem;
+  }
+  .shopping .shopping__item .shopping__delete {
+    background-color: #f2efee;
+    background-image: none;
+    right: 2rem;
+  }
+  .shopping .shopping__item p {
+    font-size: 1.8rem;
+  }
+  .shopping .shopping__item .shopping__count .shopping__count-value {
+    font-size: 1.8rem;
   }
   .recipe {
     width: 100%;
