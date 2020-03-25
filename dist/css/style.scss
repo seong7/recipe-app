@@ -252,7 +252,8 @@ body {
   outline: none;
 }
 .search__field::placeholder {
-  color: #dad0cc;
+  color: #726e6d;
+  font-weight: bold;
 }
 
 .likes {
@@ -472,9 +473,6 @@ body {
     margin-right: 1rem;
     transition: all 0.5s 0.2s; // name | duration | delay
   }
-  .shopping__toggle {
-    // right: 1rem;
-  }
 }
 // 모바일 세로, 가로 사이즈에서만 표시되도록 설정
 @media only screen and (min-width: 768px) {
@@ -605,6 +603,7 @@ body {
   flex-direction: column;
 }
 .shopping__list {
+  margin-top: 3rem;
   list-style: none;
   max-height: 77rem;
   overflow-y: scroll;
@@ -726,8 +725,36 @@ body {
     grid-template-columns: 1.3fr 3fr;
     height: 100%;
   }
+  .results{
+    grid-row: 2/4;
+  }
+  // .shopping 부분 밑으로 내리기
   .shopping {
-    display: none;
+    // display: none;
+    background-color: #f2efee;
+    grid-column: 2/4;
+    .shopping__list{
+      overflow-y: none;
+    }
+    .shopping__item{
+      justify-content: center;
+      .shopping__description {
+        max-width: 20rem
+      }
+      .shopping__delete{
+        background-color: #f2efee;
+        background-image: none;
+        right: 2rem;
+      }
+      p{
+        font-size: 1.8rem;
+      }
+      .shopping__count{
+        .shopping__count-value{
+          font-size: 1.8rem;
+        }
+      }
+    }
   }
   .recipe__info-buttons {
     visibility: visible;
@@ -808,8 +835,32 @@ body {
       }
     }
   }
+  .results{
+    grid-row: 2/4;
+  }
   .shopping {
-    display: none;
+    // display: none;
+    background-color: #f2efee;
+    grid-column: 2/4;
+    .shopping__item{
+      justify-content: center;
+      .shopping__description {
+        max-width: 20rem
+      }
+      .shopping__delete{
+        background-color: #f2efee;
+        background-image: none;
+        right: 2rem;
+      }
+      p{
+        font-size: 1.8rem;
+      }
+      .shopping__count{
+        .shopping__count-value{
+          font-size: 1.8rem;
+        }
+      }
+    }
   }
   .recipe__info-buttons {
     visibility: visible;
@@ -907,8 +958,32 @@ body {
       }
     }
   }
+  .results{
+    grid-row: 2/4;
+  }
   .shopping {
-    display: none;
+    // display: none;
+    background-color: #f2efee;
+    grid-column: 2/4;
+    .shopping__item{
+      justify-content: center;
+      .shopping__description {
+        max-width: 20rem
+      }
+      .shopping__delete{
+        background-color: #f2efee;
+        background-image: none;
+        right: 2rem;
+      }
+      p{
+        font-size: 1.8rem;
+      }
+      .shopping__count{
+        .shopping__count-value{
+          font-size: 1.8rem;
+        }
+      }
+    }
   }
   .recipe {
     width: 100%;
