@@ -47,7 +47,7 @@ import * as touch from "./views/touchScreenView";
  *  - Liked recipes
  */
 const state = {};
-window.state = state; // test 목적으로 global scope 에 공개
+// window.state = state; // test 목적으로 global scope 에 공개
 
 // touch screen 여부 판단 test function
 // const is_touch_device = () => {

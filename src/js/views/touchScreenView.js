@@ -1,5 +1,4 @@
-import { elements } from "./base.js";
-import * as likesView from "./likesView.js";
+import { elements } from "./base";
 
 // touch screen 여부 판단 test
 export const is_touch_device = () => {
