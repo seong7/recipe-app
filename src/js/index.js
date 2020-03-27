@@ -47,7 +47,7 @@ import * as touch from "./views/touchScreenView";
  *  - Liked recipes
  */
 const state = {};
-window.state = state; // test 목적으로 global scope 에 공개
+// window.state = state; // test 목적으로 global scope 에 공개
 
 // touch screen 여부 판단 test function
 // const is_touch_device = () => {
@@ -390,6 +390,16 @@ window.addEventListener("touchend", (e) => {
   if (btn) {
     // console.log(elements.searchRes.style.display);
     searchView.toggleResults(elements.searchRes.style.display === "block");
+  }
+
+  // shopping list 로 scroll 하는 버튼 기능
+  const btn2 = e.target.closest(".shopping__scroll");
+  if (btn2) {
+    elements.shopping.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
   }
 });
 

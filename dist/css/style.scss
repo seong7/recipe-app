@@ -477,7 +477,7 @@ body {
 // 모바일 세로, 가로 사이즈에서만 표시되도록 설정
 @media only screen and (min-width: 768px) {
   .results__toggle,
-  .shopping__toggle {
+  .shopping__scroll {
     visibility: hidden;
   }
 }
@@ -725,7 +725,7 @@ body {
     grid-template-columns: 1.3fr 3fr;
     height: 100%;
   }
-  .results{
+  .results {
     grid-row: 2/4;
   }
   // .shopping 부분 밑으로 내리기
@@ -733,24 +733,24 @@ body {
     // display: none;
     background-color: #f2efee;
     grid-column: 2/4;
-    .shopping__list{
+    .shopping__list {
       overflow-y: none;
     }
-    .shopping__item{
+    .shopping__item {
       justify-content: center;
       .shopping__description {
-        max-width: 20rem
+        max-width: 20rem;
       }
-      .shopping__delete{
+      .shopping__delete {
         background-color: #f2efee;
         background-image: none;
         right: 2rem;
       }
-      p{
+      p {
         font-size: 1.8rem;
       }
-      .shopping__count{
-        .shopping__count-value{
+      .shopping__count {
+        .shopping__count-value {
           font-size: 1.8rem;
         }
       }
@@ -835,28 +835,28 @@ body {
       }
     }
   }
-  .results{
+  .results {
     grid-row: 2/4;
   }
   .shopping {
     // display: none;
     background-color: #f2efee;
     grid-column: 2/4;
-    .shopping__item{
+    .shopping__item {
       justify-content: center;
       .shopping__description {
-        max-width: 20rem
+        max-width: 20rem;
       }
-      .shopping__delete{
+      .shopping__delete {
         background-color: #f2efee;
         background-image: none;
         right: 2rem;
       }
-      p{
+      p {
         font-size: 1.8rem;
       }
-      .shopping__count{
-        .shopping__count-value{
+      .shopping__count {
+        .shopping__count-value {
           font-size: 1.8rem;
         }
       }
@@ -958,28 +958,28 @@ body {
       }
     }
   }
-  .results{
+  .results {
     grid-row: 2/4;
   }
   .shopping {
     // display: none;
     background-color: #f2efee;
     grid-column: 2/4;
-    .shopping__item{
+    .shopping__item {
       justify-content: center;
       .shopping__description {
-        max-width: 20rem
+        max-width: 20rem;
       }
-      .shopping__delete{
+      .shopping__delete {
         background-color: #f2efee;
         background-image: none;
         right: 2rem;
       }
-      p{
+      p {
         font-size: 1.8rem;
       }
-      .shopping__count{
-        .shopping__count-value{
+      .shopping__count {
+        .shopping__count-value {
           font-size: 1.8rem;
         }
       }
