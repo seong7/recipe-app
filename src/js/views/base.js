@@ -6,7 +6,7 @@ export const elements = {
   searchResList: document.querySelector(".results__list"),
   searchResPages: document.querySelector(".results__pages"),
   // searchToggle: document.querySelector(".results__toggle"),    // 두 버튼은 최초에 render 되지 않아 선택해도 null 임
-  // shoppingToggle: document.querySelector(".shopping__toggle"),
+  // shoppingScroll: document.querySelector(".shopping__scroll"),
   recipe: document.querySelector(".recipe"),
   shopping: document.querySelector(".shopping"),
   shoppingList: document.querySelector(".shopping__list"),

@@ -391,6 +391,16 @@ window.addEventListener("touchend", (e) => {
     // console.log(elements.searchRes.style.display);
     searchView.toggleResults(elements.searchRes.style.display === "block");
   }
+
+  // shopping list 로 scroll 하는 버튼 기능
+  const btn2 = e.target.closest(".shopping__scroll");
+  if (btn2) {
+    elements.shopping.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  }
 });
 
 // const l = newList();
